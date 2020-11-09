@@ -2,7 +2,7 @@
     <div class="col-sm-3 sidebar">
         <div class="row">
             <div>
-                <h2>設備やサービス</h2>
+                <h2>イベント</h2>
                 <%= form_tag 'hotels', method: :get do %>
                     <div class="list-group">
                         <p class="list-group-item">
@@ -18,15 +18,17 @@
                             <%= check_box_tag 'parking' %>旅行
                         </p>
                     </div>
-                    <h2>使用した人の評価</h2>
-                    <div class="list-group">
-                        <% 5.times do |i| %>
-                            <button type="button" class="btn btn-grey btn-sm" id="star<%= i %>" aria-label="Left Align" onClick="handleStar(<%= i+1 %>)">
-                                 <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                            </button>
-                        <% end %>
-                        <%= text_field_tag "star", nil, maxlength: 1, class: "dhidden" %>
-                    </div>
+                    <% if false %>
+                        <h2>使用した人の評価</h2>
+                        <div class="list-group">
+                            <% 5.times do |i| %>
+                                <button type="button" class="btn btn-grey btn-sm" id="star<%= i %>" aria-label="Left Align" onClick="handleStar(<%= i+1 %>)">
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                </button>
+                            <% end %>
+                            <%= text_field_tag "star", nil, maxlength: 1, class: "dhidden" %>
+                        </div>
+                    <% end %>
                     <%= submit_tag "フィルター", class: "btn btn-primary" %>
                 <% end %>
             </div>
