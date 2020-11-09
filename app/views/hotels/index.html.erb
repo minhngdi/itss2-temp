@@ -3,19 +3,19 @@
         <div class="row">
             <div>
                 <h2>イベント</h2>
-                <%= form_tag 'hotels', method: :get do %>
+                <%= form_tag 'recommends', method: :get do %>
                     <div class="list-group">
                         <p class="list-group-item">
-                            <%= check_box_tag 'wifi' %>結婚式
+                            <%= check_box_tag 'wifi' %>&nbsp; 結婚式
                         </p>
                         <p class="list-group-item">
-                            <%= check_box_tag 'breakfast' %>パティ
+                            <%= check_box_tag 'breakfast' %>&nbsp; パーティー
                         </p>
                         <p class="list-group-item">
-                            <%= check_box_tag 'pool' %>デート
+                            <%= check_box_tag 'pool' %>&nbsp; デート
                         </p>
                         <p class="list-group-item">
-                            <%= check_box_tag 'parking' %>旅行
+                            <%= check_box_tag 'parking' %>&nbsp; 旅行
                         </p>
                     </div>
                     <% if false %>

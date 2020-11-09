@@ -1,16 +1,20 @@
-Hotel.create!(name: "Bach Khoa Hotel", address: "Khách sạn A25 Bạch Mai",
+Hotel.create!(name: "Áo nỉ và Chân váy", address: "パーティー、結婚式",
 phone_number: Faker::PhoneNumber.cell_phone, pool: true, parking: true)
-Hotel.create!(name: "Xã Đàn Hotel", address: "Saigon Sun Hotel Xã Đàn",
+Hotel.create!(name: "Đầm dự tiệc", address: "デート、結婚式",
 phone_number: Faker::PhoneNumber.cell_phone, pool: true, parking: true)
 
 20.times do |i|
-  Hotel.create!(name: Faker::Restaurant.name, address: Faker::Address.full_address,
+  Hotel.create!(name: Faker::Restaurant.name, address: Faker::Name.name,
 phone_number: Faker::PhoneNumber.cell_phone,
   wifi: [true, false].sample, pool: [true, false].sample, parking: [true, false].sample, breakfast:[true, false].sample)
   HotelPicture.create!(hotel_id: i+1, picture: "001.jpg")
 end
-HotelPicture.create!(hotel_id: 21, picture: "001.jpg")
-HotelPicture.create!(hotel_id: 22, picture: "001.jpg")
+HotelPicture.create!(hotel_id: 1, picture: "001.jpg")
+HotelPicture.create!(hotel_id: 1, picture: "001.jpg")
+
+HotelPicture.create!(hotel_id: 2, picture: "001.jpg")
+HotelPicture.create!(hotel_id: 2, picture: "001.jpg")
+
 99.times do |n|
   name  = Faker::Name.name
   email = "user#{n + 1}@hotel.com"

@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   resources :reports, only: [:new, :create, :index, :destroy]
 
-  resources :hotels do
+  resources :hotels, path: :recommends do
     resources :comments
   end
   resources :comments do
