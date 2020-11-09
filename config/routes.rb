@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'informations/show'
   post '/rate' => 'rater#create', :as => 'rate'
   devise_for :admins, controllers: {
         sessions: "admins/sessions"

@@ -6,19 +6,19 @@
                 <%= form_tag 'hotels', method: :get do %>
                     <div class="list-group">
                         <p class="list-group-item">
-                            <%= check_box_tag 'wifi' %>無料Wi-Fi
+                            <%= check_box_tag 'wifi' %>結婚式
                         </p>
                         <p class="list-group-item">
-                            <%= check_box_tag 'breakfast' %>朝食込み
+                            <%= check_box_tag 'breakfast' %>パティ
                         </p>
                         <p class="list-group-item">
-                            <%= check_box_tag 'pool' %>プール
+                            <%= check_box_tag 'pool' %>デート
                         </p>
                         <p class="list-group-item">
-                            <%= check_box_tag 'parking' %>無料駐車場
+                            <%= check_box_tag 'parking' %>旅行
                         </p>
                     </div>
-                    <h2>旅行者の評価</h2>
+                    <h2>使用した人の評価</h2>
                     <div class="list-group">
                         <% 5.times do |i| %>
                             <button type="button" class="btn btn-grey btn-sm" id="star<%= i %>" aria-label="Left Align" onClick="handleStar(<%= i+1 %>)">
