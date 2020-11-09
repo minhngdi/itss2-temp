@@ -4,57 +4,34 @@
 			<div class="about-main">
 				<div class="col-md-12 about-left">
 					<div class="about-tre head-bt">
-					<a href="#"><button class="btn-gt">おすすめのスポット</button></a>
-						<div class="a-1 r-bn">
-							<% top3 = Rate.select('rateable_id, avg(stars)').group(:rateable_id).order('avg(stars) desc').first(3) %>
-							<% top3.each do |topr| %>
-								<% top = Hotel.find(topr.rateable_id) %>
-								<div class="col-md-4 abt-left">
-									<%= image_tag top.hotel_pictures.first.picture.url, alt: top.name, class:"img-bn" %>
 
-									<div class="rating-block">
-										<% if top.average("quality") %>
-										<h3><%= link_to top.name, hotel_path(top) %></h3>
-										<% for i in 1..5 do %>
-											<% if i > top.average("quality").avg.round(0)%>
-												<%= image_tag "star-off", class: "show-rate"%>
-											<% else %>
-												<%= image_tag "star-on", class: "show-rate"%>
-											<% end %>
-										<% end %>
-										(<%= top.average("quality").avg.round(0)%>)
-						          <h4>
-						            レート人数：<%= top.rates("quality").count %>
-						          </h4>
-						        <% end %>
-						      </div>
-                </div>
-							</div>
-						<% end %>
-						<div class="clearfix"></div>
-					</div>
-					<br><br>
 					<div class="col-md-12 about-left">
 						<div class="about-tre head-bt">
-							<a href="#"><button class="btn-gt">パーティーにうってつけのスポット</button></a>
+							<a href="#"><button class="btn-gt">イベントにうってつけの服装</button></a>
 								<div class="a-1 r-bn">
-									<div class="col-md-4 abt-left">
-										<a href="single.html"><%= image_tag "h4.jpg",alt:"", class:"img-bn" %></a>
-										<h3><a href="single.html">ナゴヤ服装</a></h3>
-
+									<div class="col-md-6 abt-left">
+										<a href="/recommends"><%= image_tag "cuoi.jpg",alt:"", class:"img-bn" %></a>
+										<h3><a href="/recommends">結婚式</a></h3>
 									</div>
-									<div class="col-md-4 abt-left">
-										<a href="single.html"><%= image_tag "h5.jpg",alt:"", class:"img-bn" %></a>
-										<h3><a href="single.html">サクラホテフ</a></h3>
-
-									</div>
-									<div class="col-md-4 abt-left">
-										<a href="single.html"><%= image_tag "h6.jpg",alt:"", class:"img-bn" %></a>
-										<h3><a href="single.html">服装</a></h3>
-
+									<div class="col-md-6 abt-left">
+										<a href="/recommends"><%= image_tag "party.jpg",alt:"", class:"img-bn" %></a>
+										<h3><a href="/recommends">パーティー</a></h3>
 									</div>
 									<div class="clearfix"></div>
 								</div>
+								<br><br>
+								<div class="a-1 r-bn">
+									<div class="col-md-6 abt-left">
+										<a href="/recommends"><%= image_tag "henho.jpg",alt:"", class:"img-bn" %></a>
+										<h3><a href="/recommends">デート</a></h3>
+									</div>
+									<div class="col-md-6 abt-left">
+										<a href="/recommends"><%= image_tag "dulich.jpg",alt:"", class:"img-bn" %></a>
+										<h3><a href="/recommends">旅行</a></h3>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+
 							</div>
 						</div>
 		</div>
