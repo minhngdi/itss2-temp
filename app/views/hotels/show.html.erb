@@ -1,0 +1,260 @@
+<div class="row">
+	<div class="title-hotel">
+		<h2><%= @hotel.name %></h2>
+	</div>
+</div>
+<div class="row">
+    <div class="img-hotel">
+        <div class="col-sm-8 img-hotel-left">
+						<%if @hotel.hotel_pictures && @hotel.hotel_pictures.first%>
+							<%= image_tag @hotel.hotel_pictures.first.picture.url, alt: "hotel logo"%>
+						<% else %>
+							<%= link_to image_tag("hotel.jpg", alt: "hotel logo")%>
+						<% end %>
+        </div>
+        <div class="col-sm-4 img-hotel-right">
+            <div class="row">
+							<%if @pictures[0]%>
+								<%= image_tag @pictures[0].picture.url, alt: "hotel logo"%>
+							<% else %>
+								<%= link_to image_tag("hotel.jpg", alt: "hotel logo")%>
+							<% end %>
+            </div>
+            <div class="row">
+							<%if @pictures[1] && @pictures[1].nil? %>
+								<%= image_tag @pictures[1].picture.url, alt: "hotel logo"%>
+							<% else %>
+								<%= link_to image_tag("hotel.jpg", alt: "hotel logo")%>
+							<% end %>
+            </div>
+            <div class="row">
+							<%if @pictures[2] %>
+								<%= image_tag @pictures[2].picture.url, alt: "hotel logo"%>
+							<% else %>
+								<%= link_to image_tag("hotel.jpg", alt: "hotel logo")%>
+							<% end %>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="well hotel-description">
+        <h3 style="color:green">服装の基本情報:</h3>
+        <h4>住所: <%= @hotel.address %></h4>
+        <input id="address1" class="hidden-data" value="<%= @hotel.address %>">
+        <input id="address2" class="hidden-data" value="<%= @hotel.address %>">
+        <h4>電話番号: <%= @hotel.phone_number%></h4>
+				<%= social_share_button_tag('Share to Facebook', :url => "https://www.google.com.vn/", desc: @hotel.name) %>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4 well rank-hotel">
+        <div class="row">
+			<div class="rating-block">
+        <h3>
+				<%= rating_for @hotel, 'quality', disable_after_rate: false %>
+        </h3>
+        <% if @hotel.average("quality") %>
+          <h4 id="heikin">
+            平均: <span id="avg" style="color: red;"><%= @hotel.average("quality").avg.round(1) %></span>
+            (<span id="count"><%= @hotel.rates("quality").count %></span>  回)
+            <% if @rated == 0 %>
+              <span id="org" style="color: red; display: none"><%= @hotel.average("quality").avg %></span>
+              <span id="org-count" style="display: none"><%= @hotel.rates("quality").count %></span>
+              <span id="oldstar" style="color: red; display: none">0</span>
+              <span id="luu" style="display: none">0</span>
+            <% else  %>
+              <span id="org" style="color: red; display: none"><%= @oldrate %></span>
+              <span id="org-count" style="display: none"><%= @hotel.rates("quality").count - 1 %></span>
+              <span id="oldstar" style="color: red; display: none"><%= @oldstar %></span>
+
+              <span id="luu" style="display: none"><%= @oldstar %></span>
+            <% end %>
+          </h4>
+        <% else %>
+          <h4 id="heikin">
+            平均: <span id="avg" style="color: red;">0</span>
+            (<span id="count">0</span> 回)
+            <span id="org" style="color: red; display: none">0</span>
+            <span id="org-count" style="display: none">0</span>
+            <span id="oldstar" style="color: red; display: none">0</span>
+            <span id="luu" style="display: none">0</span>
+          </h4>
+        <% end %>
+			</div>
+		</div>
+		<div class="row">
+			<h4>レーティング ブレークダウン</h4>
+			<div class="pull-left">
+		        <div class="pull-left" style="width:35px; line-height:1;">
+				<div style="height:9px; margin:5px 0;">5 <span class="glyphicon glyphicon-star"></span></div>
+			</div>
+			    <div class="pull-left" style="width:180px;">
+				<div class="progress" style="height:9px; margin:8px 0;">
+					<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5" style="width: 1000%">
+						<span class="sr-only">80% Complete (danger)</span>
+					</div>
+				</div>
+			</div>
+			    <div class="pull-right" id="rate5" style="margin-left:10px;"><%= @rate5 %></div>
+			</div>
+			<div class="pull-left">
+				<div class="pull-left" style="width:35px; line-height:1;">
+					<div style="height:9px; margin:5px 0;">4 <span class="glyphicon glyphicon-star"></span></div>
+				</div>
+				<div class="pull-left" style="width:180px;">
+					<div class="progress" style="height:9px; margin:8px 0;">
+						 <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="4" aria-valuemin="0" aria-valuemax="5" style="width: 80%">
+						    <span class="sr-only">80% Complete (danger)</span>
+					    </div>
+				    </div>
+				</div>
+				<div class="pull-right" id="rate4" style="margin-left:10px;"><%= @rate4 %></div>
+			</div>
+			<div class="pull-left">
+					<div class="pull-left" style="width:35px; line-height:1;">
+						<div style="height:9px; margin:5px 0;">3 <span class="glyphicon glyphicon-star"></span></div>
+					</div>
+					<div class="pull-left" style="width:180px;">
+						<div class="progress" style="height:9px; margin:8px 0;">
+						  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="5" style="width: 60%">
+							<span class="sr-only">80% Complete (danger)</span>
+						  </div>
+						</div>
+					</div>
+					<div class="pull-right" id="rate3" style="margin-left:10px;"><%= @rate3 %></div>
+				</div>
+			<div class="pull-left">
+					<div class="pull-left" style="width:35px; line-height:1;">
+						<div style="height:9px; margin:5px 0;">2 <span class="glyphicon glyphicon-star"></span></div>
+					</div>
+					<div class="pull-left" style="width:180px;">
+						<div class="progress" style="height:9px; margin:8px 0;">
+						  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="5" style="width: 40%">
+							<span class="sr-only">80% Complete (danger)</span>
+						  </div>
+						</div>
+					</div>
+					<div class="pull-right" id="rate2" style="margin-left:10px;"><%= @rate2 %></div>
+				</div>
+			<div class="pull-left">
+					<div class="pull-left" style="width:35px; line-height:1;">
+						<div style="height:9px; margin:5px 0;">1 <span class="glyphicon glyphicon-star"></span></div>
+					</div>
+					<div class="pull-left" style="width:180px;">
+						<div class="progress" style="height:9px; margin:8px 0;">
+						  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="5" style="width: 20%">
+							<span class="sr-only">80% Complete (danger)</span>
+						  </div>
+						</div>
+					</div>
+					<div class="pull-right" id="rate1" style="margin-left:10px;"><%= @rate1 %></div>
+				</div>
+		  </div>
+    </div>
+    <div class="col-sm-4 well device-hotel">
+        <h2>設備やサービス</h2>
+        <ul class="list-group">
+          <% if @hotel.wifi %>
+        	 <li class="list-group-item glyphicon glyphicon-check">
+          <% else %>
+            <li class="list-group-item glyphicon glyphicon-unchecked">
+          <% end %>
+        		<span class="glyphicon glyphicon-signal"> Wifi</span>
+        	</li>
+        	<% if @hotel.parking %>
+           <li class="list-group-item glyphicon glyphicon-check">
+          <% else %>
+            <li class="list-group-item glyphicon glyphicon-unchecked">
+          <% end %>
+        		<span class="glyphicon glyphicon-ruble"> 駐車場</span>
+        	</li>
+        	<% if @hotel.breakfast %>
+           <li class="list-group-item glyphicon glyphicon-check">
+          <% else %>
+            <li class="list-group-item glyphicon glyphicon-unchecked">
+          <% end %>
+        		<span class="glyphicon glyphicon-fire"> 朝ご飯</span>
+        	</li>
+        	<% if @hotel.pool %>
+           <li class="list-group-item glyphicon glyphicon-check">
+          <% else %>
+            <li class="list-group-item glyphicon glyphicon-unchecked">
+          <% end %>
+        		<span class="glyphicon glyphicon-grain"> エアコン</span>
+        	</li>
+        </ul>
+        <div>
+        	<h3>他の情報</h3>
+        </div>
+    </div>
+    <div class="col-sm-4 well map-hotel">
+        <p>地図</p>
+        <div id="mode-selector" class="controls">
+          <input type="radio" name="type" id="changemode-walking">
+          <label for="changemode-walking">Walking</label>
+
+          <input type="radio" name="type" id="changemode-transit">
+          <label for="changemode-transit">Transit</label>
+
+          <input type="radio" name="type" id="changemode-driving" checked="checked">
+          <label for="changemode-driving">Driving</label>
+        </div>
+
+        <div id="map"></div>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
+      <script src="//maps.google.com/maps/api/js?key=AIzaSyB1tYkDuIhKOg4Kua7oK3lBLnG2Mubgo40"></script>  
+      <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>  
+      <script src='//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js' type='text/javascript'></script>
+      <script src='//underscorejs.org/underscore-min.js' type='text/javascript'></script>
+      </script>
+    </div>
+</div>
+
+<div class="row">
+
+        <div class="row">
+            <div class="comment-content">
+                <ul class="comment-errors"></ul>
+                <div class="blog-comment">
+                  <% if user_signed_in? %>
+                  <div class="pb-cmnt-container">
+                    <div class="well comment">
+                      <%= form_for :comment,
+                        url: hotel_comments_path(:hotel_id => @hotel.id),
+                        :html => {:class => "form-inline"}, remote: true do |f| %>
+                        <%= f.text_area :body, placeholder: "コメントを追加する",
+                          class: "box-clear" %><br/>
+                        <%= f.hidden_field :user_id, value: current_user.id, id: "user_hotel" %>
+                        <%= f.hidden_field :hotel_id, value: @hotel.id %>
+                        <%= f.submit "コメント追加",
+                          class: "btn btn-primary pull-right", data: {send: "hotel"} %>
+                      <% end %>
+                    </div>
+                  </div>
+                  <hr/>
+                <% else %>
+                  <h3 style="text-align: center;">コメントのために<%= link_to "ログイン", new_user_session_path %>下さい</h3>
+                  <%= form_for :comment,
+                      url: hotel_comments_path(:hotel_id => @hotel.id),
+                      :html => {:class => "form-inline"}, remote: true do |f| %>
+                    <%= f.hidden_field :hotel_id, value: @hotel.id %>
+                  <% end %>
+                <% end %>
+                <ul class="comments" id="comments_hotel">
+                  <li class="clearfix">
+                    <p>
+                      <%= render @comments %>
+                    </p>
+                  </li>
+                </ul>
+								<div class="text-center"><%= paginate @comments, :theme => "twitter-bootstrap-3"%></div>
+                </div>
+            </div>
+        </div>
+
+</div>
+<div id="comment-modal" class="modal fade"></div>
+<% if @conversation %>
+  <%= render "chat" %>
+<% end %>

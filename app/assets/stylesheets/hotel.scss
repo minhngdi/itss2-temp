@@ -1,0 +1,145 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+/* universal */
+
+.nav-bar {
+  height: 100px
+}
+
+body {
+  padding-top: 0px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.img-hotel {
+  margin-top: 25px;
+}
+
+.img-hotel .img-hotel-left {
+  padding-left: 0px;
+}
+
+.img-hotel .img-hotel-right {
+  padding-left: 100px;
+}
+
+.img-hotel-left img {
+  width: 860px;
+  height: 450px;
+}
+
+.img-hotel-right img {
+  width: 300px;
+  height: 150px;
+}
+
+.hotel-description {
+  margin-top: 10px;
+  height: 250px;
+  margin-bottom: 10px !important;
+}
+
+// rank
+.rank-hotel {
+  height: 350px !important;
+}
+
+.btn-grey{
+    background-color:#D8D8D8;
+  color:#FFF;
+}
+
+.rating-block{
+  background-color:#FAFAFA;
+  border:1px solid #EFEFEF;
+  padding:15px 15px 20px 15px;
+  border-radius:3px;
+}
+
+.bold{
+  font-weight:700;
+}
+
+.padding-bottom-7{
+  padding-bottom:7px;
+}
+
+.review-block{
+  background-color:#FAFAFA;
+  border:1px solid #EFEFEF;
+  padding:15px;
+  border-radius:3px;
+  margin-bottom:15px;
+}
+
+// end rank
+.device-hotel {
+  height: 350px !important;
+}
+
+.map-hotel {
+  height: 350px !important;
+}
+
+// rating-hotel
+.rating-hotel {
+  margin-top: -10px !important;
+  margin-bottom: 10px !important;
+}
+
+// end rating-hotel
+
+.comment {
+  height: 200px !important;
+}
+
+#map {
+  height: 94%;
+}
+.controls {
+  background-color: #fff;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  height: 29px;
+  margin-left: 17px;
+  margin-top: 10px;
+  outline: none;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 400px;
+}
+
+.controls:focus {
+  border-color: #4d90fe;
+}
+.title {
+  font-weight: bold;
+  text-align: center;
+}
+#infowindow-content {
+  display: none;
+}
+#map #infowindow-content {
+  display: inline;
+}
+#mode-selector {
+  color: #fff;
+  background-color: #4d90fe;
+  margin-left: 12px;
+  padding: 5px 11px 0 11px;
+  display: none;
+}
+.hidden-data {
+  display: none;
+}
+.info {
+  margin-left: 20px;
+}

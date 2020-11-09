@@ -1,0 +1,18 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <%= form_for @comment, remote: true,
+      html: {style: "display:inline;"} do |f| %>
+      <div class="modal-body">
+        <ul class="errors"></ul>
+
+        <div class="form-group">
+          <%= f.text_area :body, size: "30x5", class: "form-control" %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <%= f.submit class: "btn btn-primary" %>
+        <%= link_to t("cancel"), "#", class: "btn", data: {dismiss: "modal"} %>
+      </div>
+    <% end %>
+  </div>
+</div>

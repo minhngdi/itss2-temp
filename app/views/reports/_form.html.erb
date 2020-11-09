@@ -1,0 +1,17 @@
+<div class="modal-header">
+   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+   <h2 id="myModalLabel">報告理由</h2>
+ </div>
+ <div class="modal-body">
+   **報告理由を記入してくださ。**
+   <%= form_for @report do |f| %>
+    <%= f.text_area :reason, class: "form-control"%>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :comment_id, value: @comment_id %>
+    <br>
+    <%= f.submit "送る", class: "btn btn-primary"%>
+    <button class="btn" data-dismiss="modal" aria-hidden="true">キャンセル</button>
+    <% end %>
+ </div>
+ <div class="modal-footer">
+ </div>

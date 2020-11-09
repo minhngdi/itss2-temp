@@ -1,0 +1,5 @@
+<% provide :title, t("login") %>
+<% provide :modal_content, "users/sessions/form"  %>
+$("#modal-window").find(".modal-content").
+  html("<%= j render 'shared/modal' %>");
+$("#modal-window").modal('show');

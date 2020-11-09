@@ -1,0 +1,39 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+/* universal */
+
+body {
+  padding-top: 20px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.title {
+  margin: 35px 0 45px 0;
+}
+
+.sidebar {
+  padding-right: 60px;
+  margin-top: 63px;
+}
+
+.info {
+  padding-left: 60px;
+}
+
+.hotel {
+  margin-top: 15px;
+  margin-bottom: 25px;
+}
+
+.hotel-information {
+  padding-left: 150px;
+}
+
+.hotel-img img {
+  height: 250px;
+  width: 400px;
+  padding-right: 15px;
+}

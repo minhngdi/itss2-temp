@@ -1,0 +1,33 @@
+<% provide :title, t("password.pass_reset") %>
+<div class="row justify-content-center" id="form-row">
+  <div class="col-5">
+    <h2><% t "password.password_change" %></h2>
+
+    <%= form_for resource, as: resource_name,
+      url: password_path(resource_name), html: { method: :put } do |f| %>
+      <%= devise_error_messages! %>
+      <%= f.hidden_field :reset_password_token %>
+
+      <div class="field">
+        <%= f.label :password, t("password.new_pass") %><br />
+        <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> <% t "min_char" %>)</em><br />
+        <% end %>
+        <%= f.password_field :password, autofocus: true, autocomplete: "off",
+          class: "form-control" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation, t("password.confirm_pass") %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "off",
+          class: "form-control"%>
+      </div>
+      <br />
+      <div class="actions">
+        <%= f.submit t("password.password_change"), class: "btn btn-primary"%>
+      </div>
+    <% end %>
+    <br />
+    <%= render "users/shared/links" %>
+  </div>
+</div>

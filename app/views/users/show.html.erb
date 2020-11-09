@@ -1,0 +1,46 @@
+   <div class="container " >
+        <div class="row text-center" style="padding-top:30px;">
+            <div class="col-md-12">
+             <h1>  ユーザープロフィール</h1>
+                <br />
+           </div>
+        </div>
+       <div class="row " style="padding-bottom:50px; ">
+           <div class="col-md-3">
+               <% if @user.avatar? %>
+                <%= image_tag(@user.avatar_url, class: "img-responsive img-thumbnail", size: "180x150") %>
+              <% else %>
+                <%= image_tag("user", class: "img-responsive img-thumbnail", size: "180x150") %>
+              <% end %>
+           </div>
+           <div class="col-md-9">
+             <% if current_user && (current_user == @user)%>
+             <div class="btn-group pull-right">
+              <button type="button" class="btn btn-success"><%= current_user.name%></button>
+              <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li><%= link_to "ユーザー情報の編集", edit_user_registration_path %></li>
+                <li class="divider"></li>
+                <li><%= link_to "サインアウト", destroy_user_session_path,
+                method: :delete %></li>
+              </ul>
+            </div>
+             <% end %>
+               <br /><br />
+               <hr />
+               <div class="d-flex p-2">
+                <h3><strong> 名前: </strong><%= @user.name%></h3>
+
+                 <h3> <strong> メール: </strong><%= @user.email %></h3>
+                <h3>  <strong> 役割: </strong><%= @user.role == 1 ? "ユーザー" : "管理者" %></h3>
+
+                </div>
+
+           </div>
+       </div>
+   </div>
+</body>
+</html>

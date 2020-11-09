@@ -1,0 +1,25 @@
+<% provide :title, t("password.pass_reset") %>
+<div class="row justify-content-center" id="form-row">
+  <div class="col-5">
+    <h2><% t "password.forgot_pass" %></h2>
+
+    <%= form_for resource, as: resource_name,
+      url: password_path(resource_name),
+      html: { method: :post } do |f| %>
+      <%= devise_error_messages! %>
+
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email",
+          class: "form-control" %>
+      </div>
+      <br>
+      <div class="actions">
+        <%= f.submit t("password.resend_pass_reset"),
+           class: "btn btn-primary" %>
+      </div>
+    <% end %>
+    <br>
+    <%= render "users/shared/links" %>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<br>
+<%= form_for :comment,
+  url: comment_comments_path(:comment_id => comment.id),
+  :html => {:class => "form-inline"}, remote: true do |f| %>
+  <%= f.text_area :body, placeholder: "Add a reply",
+    class: "box-clear", value: "" %><br/>
+  <%= f.hidden_field :user_id, value: current_user.id, class: "comment_user" %>
+  <%= f.hidden_field :hotel_id, value: comment.commentable_id %>
+  <%= f.hidden_field :comment_id, value: comment.id %>
+  <%= f.submit "Add Reply Comment", class: "btn btn-primary pull-right" %>
+<% end %>
+<br>
+<br>

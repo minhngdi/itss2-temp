@@ -1,0 +1,26 @@
+<% provide :title, t("confirmations.active_confirm") %>
+<div class="row justify-content-center" id="form-row">
+  <div class="col-5">
+    <h2><% t "confirmations.resend_confirm" %></h2>
+
+    <%= form_for resource, as: resource_name,
+      url: confirmation_path(resource_name),
+      html: { method: :post } do |f| %>
+      <%= devise_error_messages! %>
+
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: t("email"),
+          value: (resource.pending_reconfirmation? ?
+          resource.unconfirmed_email : resource.email), class: "form-control" %>
+      </div>
+      <br>
+      <div class="actions">
+        <%= f.submit t("confirmations.resend_confirm"),
+           class: "btn btn-primary" %>
+      </div>
+    <% end %>
+    <br>
+    <%= render "users/shared/links" %>
+  </div>
+</div>

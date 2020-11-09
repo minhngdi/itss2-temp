@@ -1,0 +1,4 @@
+<% if user_signed_in? %>
+  <div id="current-user"></div>
+  <p class="dhidden"><%= current_user.name %> | <%= link_to 'log out', destroy_user_session_path, method: :delete %></p>
+<% end %>

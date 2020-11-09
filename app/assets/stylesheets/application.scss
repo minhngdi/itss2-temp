@@ -1,0 +1,87 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+   *= require_self
+   *= require social-share-button
+   */
+@import "bootstrap";
+@import "bootstrap-sprockets";
+
+.social-share-button .ssb-icon {
+    background-size: 30px 30px !important;
+    height: 30px !important;
+    width: 30px !important;
+  }
+
+  .resize {
+    width: 60% !important;
+  }
+
+#notification {
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  width: 300px;
+  padding: 10px;
+  border: 1px solid black;
+  background-color: #fff;
+  .close {cursor: pointer}
+}
+
+.online_status {
+  color: red;
+  transition: color 1s ease;
+  &.online {
+    color: green;
+  }
+}
+.chat1-icon {
+  height: 70px;
+  padding-bottom: 20px;
+  padding-left: 30px;
+}
+
+.show-rate{
+  width: 20px!important;
+  height: 20px!important;
+}
+
+.bell {
+  position: absolute;
+  right: 50px;
+  top: 10px;
+  width: 30px!important;
+  height: 30px!important;
+}
+
+.notification_count {
+  position: relative;
+  top: 10px;
+  right: 60px;
+  width: 70%!important;
+  height: 70%!important;
+  text-decoration-color: black;
+  z-index: 1;
+}
+
+.mess-icon {
+  position: absolute;
+  width: 30px!important;
+  height: 30px!important;
+  right: 30px;
+  top: 10px;
+}
+
+.notification_wrapper .dropdown_notification .notification_count span {
+  color: #333!important;
+}

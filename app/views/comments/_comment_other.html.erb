@@ -1,0 +1,71 @@
+<li class="clearfix" id="comment_overall<%= comment.id %>">
+  <div class="row">
+    <div class="avatar-icon col-md-1">
+      <% if comment.user.picture %>
+        <%= image_tag(comment.user.picture, class: "avatar")%>
+      <% else %>
+        <%= image_tag("user", class: "avatar") %>
+        <%= comment.user.name %>
+      <% end %>
+    </div>
+    <div class="col-md-10">
+      <div class="post-comments">
+        <p class="meta"><span id="comment_time<%= comment.id %>">
+          <% if (comment.created_at == comment.updated_at) %>
+            <%= comment.created_at.in_time_zone("Hanoi").strftime("%d/%m/%Y %H:%M") %></span>
+          <% else %>
+            <%= t "updated_at" %> <%= comment.updated_at.in_time_zone("Hanoi").strftime("%d/%m/%Y %H:%M") %></span>
+          <% end %>
+          <%= t "by" %> <%= comment.user.name %>
+          <% if user_signed_in? && comment.user != current_user %>
+            <%= link_to image_tag('chat.jpg', class: "chat1-icon"), new_personal_message_path(receiver_id: comment.user), , hotel_id: @hotel.id %>
+          <% end %>
+        </p>
+        <% if comment.commentable_type == "Hotel" %>
+          <i class="pull-right">
+            <small><button class="btn-sm btn-success button<%= comment.id %>">
+              <% if user_signed_in? %><% end %>
+            </button></small>
+          </i>
+        <% end %>
+        <p id="comment_body<%= comment.id %>">
+          <%= comment.body %>
+        </p>
+          <% if comment.commentable_type == "Hotel" %>
+            <ul class="comments_comment<%= comment.id %>">
+              <%= render comment.comments %>
+            </ul>
+            <div class="reply_form<%= comment.id %>">
+            </div>
+          <% end %>
+          <% if user_signed_in? %>
+            <script type="text/javascript">
+              $(document).on("click",".button<%= comment.id %>",function(){
+                if ( $("#user_hotel").val() === undefined ){
+                  $(".button<%= comment.id %>").hide()
+                } else {
+                  $(".reply_form<%= comment.id %>").html("<%=j render partial: 'comments/form', locals: {:comment => comment} %>")
+                  $(".comment_user").val($("#user_hotel").val())
+                }
+              })
+            </script>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</li>
+
+<style>
+  .chat1-icon {
+    width: 8%;
+    height: 0%;
+    margin-left: -30px;
+  }
+  .avatar-icon {
+    padding-left: 75px;
+  }
+  .avatar {
+    width: 75px;
+    height: 70px;
+  }
+</style>

@@ -1,0 +1,60 @@
+(function() {
+  jQuery(document).on('turbolinks:load', function() {
+    var messages, messages_to_bottom;
+    var cru = parseInt($("#current_user_id").val());
+    messages_to_bottom = function() {
+      return $('#conversation-main').scrollTop($('#conversation-main').prop("scrollHeight"));
+    };
+    messages = $('#conversation-body');
+    if ($('#current-user').size() > 0) {
+      App.personal_chat = App.cable.subscriptions.create({
+        channel: "NotificationsChannel"
+      }, {
+        connected: function() {},
+        disconnected: function() {},
+        received: function(data) {
+          if (messages.size() > 0 && messages.data('conversation-id') === data['conversation_id']) {
+            if (data['user_id']==cru) {
+              messages.append(data['message']);
+            }
+            else {
+              messages.append(data['message2']);
+            }
+            return messages_to_bottom();
+          } else {
+            if ($('#conversations').size() > 0) {
+              $.getScript('/conversations');
+            }
+            if (data['notification']) {
+              return $('body').append(data['notification']);
+            }
+          }
+        },
+        send_message: function(message, conversation_id) {
+          return this.perform('send_message', {
+            message: message,
+            conversation_id: conversation_id
+          });
+        }
+      });
+    }
+    $(document).on('click', '#notification .close', function() {
+      return $(this).parents('#notification').fadeOut(1000);
+    });
+    if (messages.length > 0) {
+      messages_to_bottom();
+      return $('#new_personal_message').submit(function(e) {
+        var $this, textarea;
+        $this = $(this);
+        textarea = $this.find('#personal_message_body');
+        if ($.trim(textarea.val()).length > 1) {
+          App.personal_chat.send_message(textarea.val(), $this.find('#conversation_id').val());
+          textarea.val('');
+        }
+        e.preventDefault();
+        return false;
+      });
+    }
+  });
+
+}).call(this);

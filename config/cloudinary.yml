@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: bachkhoa
+  api_key: '343234663425594'
+  api_secret: rQHZwfmZzBcb5tS7-xtTU2eiE-A
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: bachkhoa
+  api_key: '343234663425594'
+  api_secret: rQHZwfmZzBcb5tS7-xtTU2eiE-A
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: bachkhoa
+  api_key: '343234663425594'
+  api_secret: rQHZwfmZzBcb5tS7-xtTU2eiE-A
+  enhance_image_tag: true
+  static_image_support: false

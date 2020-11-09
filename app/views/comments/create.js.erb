@@ -1,0 +1,7 @@
+<% if @comment.commentable_type == "Hotel" %>
+  $("#comments_hotel").append("<%= escape_javascript("#{render :partial => 'comments/comment', :locals => { :comment => @comment }}").html_safe %>");
+  $("#comment_body").val("");
+<% else %>
+  $(".comments_comment".concat(<%= @comment.commentable_id.to_s %>)).append("<br><%= escape_javascript("#{render :partial => 'comments/comment', :locals => { :comment => @comment }}").html_safe %>");
+  $("#comment_body").val("");
+<% end %>

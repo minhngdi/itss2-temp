@@ -1,0 +1,145 @@
+<!--about-starts-->
+	<div class="about">
+		<div class="container">
+			<div class="about-main">
+				<div class="col-md-12 about-left">
+					<div class="about-tre head-bt">
+					<a href="#"><button class="btn-gt">おすすめのスポット</button></a>
+						<div class="a-1 r-bn">
+							<% top3 = Rate.select('rateable_id, avg(stars)').group(:rateable_id).order('avg(stars) desc').first(3) %>
+							<% top3.each do |topr| %>
+								<% top = Hotel.find(topr.rateable_id) %>
+								<div class="col-md-4 abt-left">
+									<%= image_tag top.hotel_pictures.first.picture.url, alt: top.name, class:"img-bn" %>
+
+									<div class="rating-block">
+										<% if top.average("quality") %>
+										<h3><%= link_to top.name, hotel_path(top) %></h3>
+										<% for i in 1..5 do %>
+											<% if i > top.average("quality").avg.round(0)%>
+												<%= image_tag "star-off", class: "show-rate"%>
+											<% else %>
+												<%= image_tag "star-on", class: "show-rate"%>
+											<% end %>
+										<% end %>
+										(<%= top.average("quality").avg.round(0)%>)
+						          <h4>
+						            レート人数：<%= top.rates("quality").count %>
+						          </h4>
+						        <% end %>
+						      </div>
+                </div>
+							</div>
+						<% end %>
+						<div class="clearfix"></div>
+					</div>
+					<br><br>
+					<div class="col-md-12 about-left">
+						<div class="about-tre head-bt">
+							<a href="#"><button class="btn-gt">パーティーにうってつけのスポット</button></a>
+								<div class="a-1 r-bn">
+									<div class="col-md-4 abt-left">
+										<a href="single.html"><%= image_tag "h4.jpg",alt:"", class:"img-bn" %></a>
+										<h3><a href="single.html">ナゴヤ服装</a></h3>
+
+									</div>
+									<div class="col-md-4 abt-left">
+										<a href="single.html"><%= image_tag "h5.jpg",alt:"", class:"img-bn" %></a>
+										<h3><a href="single.html">サクラホテフ</a></h3>
+
+									</div>
+									<div class="col-md-4 abt-left">
+										<a href="single.html"><%= image_tag "h6.jpg",alt:"", class:"img-bn" %></a>
+										<h3><a href="single.html">服装</a></h3>
+
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+		</div>
+	</div>
+	<!--about-end-->
+	<!--slide-starts-->
+	<div class="slide">
+		<div class="container">
+			<div class="fle-xsel">
+			<ul id="flexiselDemo3">
+				<li>
+					<a href="#">
+						<div class="banner-1">
+							<%= image_tag "h7.jpg",class:"img-responsive", alt:"" %>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<div class="banner-1">
+							<%= image_tag "h8.jpg",class:"img-responsive", alt:"" %>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<div class="banner-1">
+							<%= image_tag "h9.jpg",class:"img-responsive", alt:"" %>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<div class="banner-1">
+							<%= image_tag "h10.jpg",class:"img-responsive", alt:"" %>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<div class="banner-1">
+							<%= image_tag "h3.jpg",class:"img-responsive", alt:"" %>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<div class="banner-1">
+							<%= image_tag "h2.jpg", class:"img-responsive", alt:"" %>
+						</div>
+					</a>
+				</li>
+			</ul>
+
+							 <script type="text/javascript">
+								$(window).load(function() {
+
+									$("#flexiselDemo3").flexisel({
+										visibleItems: 5,
+										animationSpeed: 1000,
+										autoPlay: true,
+										autoPlaySpeed: 3000,
+										pauseOnHover: true,
+										enableResponsiveBreakpoints: true,
+										responsiveBreakpoints: {
+											portrait: {
+												changePoint:480,
+												visibleItems: 2
+											},
+											landscape: {
+												changePoint:640,
+												visibleItems: 3
+											},
+											tablet: {
+												changePoint:768,
+												visibleItems: 3
+											}
+										}
+									});
+
+								});
+								</script>
+								<%= javascript_include_tag 'jquery.flexisel.js', type: "text/javascript"%>
+					<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+	<!--slide-end-->

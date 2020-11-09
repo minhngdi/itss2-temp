@@ -1,0 +1,10 @@
+$("ul.errors").html("")
+<% if @comment.errors.any? %>
+  <% @comment.errors.full_messages.each do |message| %>
+    $("ul.errors").append($("<li/>").html('<%= message.html_safe %>'))
+  <% end %>
+<% else %>
+  $("#comment_body".concat(<%= @comment.id.to_s %>)).replaceWith('<p id="comment_body<%= @comment.id %>"><%= @comment.body %></p>')
+  $("#comment_time".concat(<%= @comment.id.to_s %>)).replaceWith('<span id="comment_time<%= @comment.id %>"><%= t "updated_at" %> <%= @comment.updated_at.in_time_zone("Hanoi").strftime("%d/%m/%Y %H:%M") %></span>')
+  $("#comment-modal").modal("hide")
+<% end %>

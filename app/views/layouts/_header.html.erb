@@ -1,0 +1,94 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to "いい服装", root_path, class: "navbar-brand btn-info" %>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+      <ul class="nav navbar-nav">
+        <li><%= link_to "服装一覧", hotels_path %></li>
+      </ul>
+      <div class="navbar-form navbar-left" role="search">
+        <%= form_tag(hotels_path, method: "get") do %>
+          <%= text_field_tag "term", params[:term], placeholder: "服装名や住所を記入してください。", class: "form-control", style: "width: 280px;" %>
+          <%= submit_tag "検索", type: "submit", class: "btn btn-default" %>
+        <% end %>
+      </div>
+
+      <% if !user_signed_in? %>
+      <ul class="nav navbar-nav navbar-right">
+        <%if !current_admin %>
+          <li><%= link_to "ログイン", new_user_session_path %></li>
+  				<li><%= link_to "サインアップ", new_user_registration_path %></li>
+        <%end%>
+      </ul>
+			<% else %>
+        <div class="navbar-right btn-group" style="margin-top: 5px;">
+          <%= link_to current_user.name, current_user, class: "btn btn-success" %>
+          <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+            <span class="caret"></span>
+            <span class="sr-only">Toggle Dropdown</span>
+          </button>
+  				<ul class="dropdown-menu" role="menu">
+            <li><%= link_to "ユーザー情報の編集", edit_user_registration_path %></li>
+            <li class="divider"></li>
+            <li><%= link_to "サインアウト", destroy_user_session_path,
+            method: :delete %></li>
+          </ul>
+        </div>
+        <div class="nav navbar-nav navbar-right">
+          <ul class="nav navbar-nav">
+          <li>
+            <% if current_user.admin? %>
+            <%= render_notifications_of current_user, fallback: 'default'%>
+              <%= image_tag "bell", class: "bell"%>
+            <% end %>
+          </li>
+          <li class="dropdown">
+            <% author_convs = current_user.authored_conversations %>
+            <% received_convs = current_user.received_conversations %>
+            <% convs = author_convs | received_convs %>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= image_tag "message", class: "mess-icon"%></a>
+            <ul class="dropdown-menu notify-drop">
+              <div class="notify-drop-title">
+                <div class="row">
+                  <div class="col-md-12 col-sm-12 col-xs-12">Chatted with you</div>
+                  <div class="col-md-6 col-sm-6 col-xs-6 text-right"><a href="" class="rIcon allRead" data-tooltip="tooltip" data-placement="bottom" title="tümü okundu."><i class="fa fa-dot-circle-o"></i></a></div>
+                </div>
+              </div>
+              <!-- end notify title -->
+              <!-- notify content -->
+              <div class="drop-content">
+
+                <% convs.each do |conv| %>
+                  <% opp = conv.author_id == current_user.id ? conv.receiver_id : conv.author_id %>
+                  <li>
+
+                    <p class="time"><%= link_to online_status(User.find_by(id: opp)), hotel_path(:id => conv.hotel.id, :conversation_id => conv.id) %></p>
+                    <div class="col-md-3 col-sm-3 col-xs-3"><%= image_tag User.find_by(id: opp).picture, class: "notify-img" %></div>
+
+                    <div class="col-md-9 col-sm-9 col-xs-9 pd-l0">
+                     <% if conv.personal_messages.last %>
+                        <%= link_to conv.personal_messages.last.body.truncate(50), hotel_path(:id => conv.hotel.id, :conversation_id => conv.id) %>
+                      <% end %>
+                    </div>
+                  </li>
+                <% end %>
+              </div>
+              <div class="notify-drop-footer text-center">
+                <a href=""><i class="fa fa-eye"></i> Conversations (<b><%= convs.count %></b>)</a>
+              </div>
+            </ul>
+          </li>
+        </ul>
+        </div>
+			<% end %>
+    </div>
+  </div>
+</nav>

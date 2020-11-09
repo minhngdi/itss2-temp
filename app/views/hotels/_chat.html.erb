@@ -1,0 +1,57 @@
+<div class="container text-center">
+  <div class="row">
+    <div class="chat-button">
+      <button id="addClass" class="btn btn-light btn-long"><%= online_status @conversation.with(current_user) %></button>
+    </div>
+    <hr>
+  </div>
+</div>
+<div class="popup-box chat-popup" id="qnimate">
+  <div class="popup-head">
+    <div class="popup-head-left pull-left">
+      <%= online_status @conversation.with(current_user) %>
+    </div>
+    <div class="popup-head-right pull-right">
+      <div class="btn-group">
+      </div>
+      <button data-widget="remove" id="removeClass"
+        class="chat-header-button pull-right" type="button">
+        <i class="glyphicon glyphicon-off"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="popup-messages" id="conversation-main">
+    <div class="direct-chat-messages">
+      <% if @conversation.personal_messages.all.length > 10 %>
+        <button id="load-more" class="btn">
+          <%= t "load_more" %>
+        </button>
+      <% end %>
+      <% if @conversation.personal_messages.any? %>
+        <div id="conversation-body" data-conversation-id="<%= @conversation.id %>">
+          <% @conversation.personal_messages.each do |personal_message| %>
+            <% if current_user == personal_message.user %>
+              <%= render partial: "personal_messages/personal_message", locals: {personal_message: personal_message} %>
+            <% else %>
+              <%= render partial: "personal_messages/personal_message_other", locals: {personal_message: personal_message} %>
+            <% end %>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="card-body hidden" id="messages"></div>
+      <% end %>
+    </div>
+  </div>
+  <div class="popup-messages-footer">
+    <%= form_for @personal_message do |f| %>
+        <%= hidden_field_tag 'conversation_id', @conversation.id %>
+        <%= f.text_area :body, class: "form-control" %>
+        <%= hidden_field_tag 'current_user_id', current_user.id %>
+        <%= f.submit :save, class: "dhidden" %>
+      <% end %>
+  </div>
+</div>
+<script type="text/javascript">
+
+</script>

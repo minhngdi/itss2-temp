@@ -1,0 +1,6 @@
+<li>
+  <%= user.name %>
+  <% if user_signed_in? %>
+    |<%= link_to 'send a message', new_personal_message_path(receiver_id: comment.user) %>
+  <% end %>
+</li>

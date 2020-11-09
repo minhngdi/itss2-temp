@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-md-10">
+    <br>
+    <%= image_tag personal_message.user.picture, class: "direct-chat-img" %>
+    <div class="direct-chat-text">
+      <%= personal_message.body %>
+    </div>
+    <div class="direct-chat-info clearfix">
+      <span class="direct-chat-timestamp pull-right"><%= personal_message.created_at.in_time_zone("Hanoi").strftime("%d/%m/%Y %H:%M") %></span>
+    </div>
+  </div>
+  <div class="col-md-2"></div>
+</div>
+

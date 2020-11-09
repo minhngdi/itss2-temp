@@ -1,0 +1,16 @@
+default: &default
+  adapter: postgresql
+  host: localhost
+  user: 
+  password:
+
+development:
+  <<: *default
+  database: hotel_dev
+
+test:
+  <<: *default
+  database: hotel_test
+
+production:
+  <<: *default
