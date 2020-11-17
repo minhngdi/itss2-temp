@@ -1,15 +1,26 @@
-cần cài ruby và rails, có thể tham khảo ở đây https://gorails.com/setup/ubuntu/16.04 
+Trước khi chạy app, cần:
 
-cài xong thì cd vào good_hotel, mở terminal và lần lượt nhập các lệnh sau:
+1. Khởi động PostgreSql
 
-bundle install
+    ``` sudo service postgresql start ```
 
-rails db:create
+2. ``` bundle install```
 
-rails db:seed
+3. ``` bundle update```
 
-rails s (gõ lệnh này mỗi khi muốn chạy chương trình)
+4. ``` rails db:create```
 
-NOTE: project sử dụng postgresql, vào file config/database.yml có 2 dòng user và password thì đổi thành trong máy của bạn
+5. ``` rails db:migrate```
 
-tài khoản admin có sẵn email: admin@gmail.com, password: adminadmin
+6. ``` rails db:seed```
+
+Để chạy app:
+
+* ``` rails s```
+
+NOTE: App sử dụng postgresql, thay đổi trong: 
+```config/database.yml-example``` 
+*  ```user``` 
+* ```password```
+
+Dev-team: ITSS2の最後チーム

@@ -49,7 +49,7 @@
         <% @hotels.each do |hotel| %>
             <div class="row well hotel">
                 <div class="col-md-7 abt-left">
-                    <%= image_tag hotel.hotel_pictures.first.picture.url, alt: hotel.name, class:"img-bn" %>
+                    <%= image_tag hotel.hotel_pictures.first.picture.url, alt: hotel.name, class:"img-bn image-custom" %>
                 </div>
                 <div class="col-sm-5 hotel-information">
                     <h4><%= link_to hotel.name, hotel_path(hotel.id) %></h4>
