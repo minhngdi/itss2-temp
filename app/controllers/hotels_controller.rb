@@ -4,13 +4,13 @@ class HotelsController < ApplicationController
 
   def index
     if params[:term]
-      @hotels = Hotel.search_by_hotel_name(params[:term]).page(params[:page1]).per Settings.paginate.hotels
-      @hotels2 = Hotel.search_by_hotel_address(params[:term]).page(params[:page2]).per Settings.paginate.hotels
+      @hotels = Hotel.search_by_hotel_name(params[:term]).order(id: :asc).page(params[:page1]).per Settings.paginate.hotels
+      @hotels2 = Hotel.search_by_hotel_address(params[:term]).order(id: :asc).page(params[:page2]).per Settings.paginate.hotels
       @keyword = params[:term]
     elsif params[:commit] == "フィルター"
-      @hotels = Hotel.filter_by_service(params).page(params[:page]).per Settings.paginate.hotels
+      @hotels = Hotel.filter_by_service(params).order(id: :asc).page(params[:page]).per Settings.paginate.hotels
     else
-      @hotels = Hotel.all.page(params[:page]).per Settings.paginate.hotels
+      @hotels = Hotel.all.order(id: :asc).page(params[:page]).per Settings.paginate.hotels
     end
   end
 
