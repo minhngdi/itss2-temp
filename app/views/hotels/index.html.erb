@@ -1,120 +1,137 @@
 <div class="row">
-    <div class="col-sm-3 sidebar">
-        <div class="row">
-            <div>
-                <h2>イベント</h2>
-                <%= form_tag 'recommends', method: :get do %>
-                    <div class="list-group">
-                        <p class="list-group-item">
-                            <%= check_box_tag 'wifi' %>&nbsp; 結婚式
-                        </p>
-                        <p class="list-group-item">
-                            <%= check_box_tag 'breakfast' %>&nbsp; パーティー
-                        </p>
-                        <p class="list-group-item">
-                            <%= check_box_tag 'pool' %>&nbsp; デート
-                        </p>
-                        <p class="list-group-item">
-                            <%= check_box_tag 'parking' %>&nbsp; 旅行
-                        </p>
-                    </div>
-                    <% if false %>
-                        <h2>使用した人の評価</h2>
-                        <div class="list-group">
-                            <% 5.times do |i| %>
-                                <button type="button" class="btn btn-grey btn-sm" id="star<%= i %>" aria-label="Left Align" onClick="handleStar(<%= i+1 %>)">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                </button>
-                            <% end %>
-                            <%= text_field_tag "star", nil, maxlength: 1, class: "dhidden" %>
-                        </div>
-                    <% end %>
-                    <%= submit_tag "フィルター", class: "btn btn-primary" %>
-                <% end %>
+  <div class="col-sm-3 sidebar">
+    <div class="row">
+      <div>
+        <h2>イベント</h2>
+        <%= form_tag 'recommends', method: :get do %>
+          <div class="list-group">
+            <p class="list-group-item">
+              <%= check_box_tag 'wifi' %>&nbsp; 結婚式
+            </p>
+            <p class="list-group-item">
+              <%= check_box_tag 'breakfast' %>&nbsp; パーティー
+            </p>
+            <p class="list-group-item">
+              <%= check_box_tag 'pool' %>&nbsp; デート
+            </p>
+            <p class="list-group-item">
+              <%= check_box_tag 'parking' %>&nbsp; 旅行
+            </p>
+          </div>
+          <% if false %>
+            <h2>使用した人の評価</h2>
+            <div class="list-group">
+              <% 5.times do |i| %>
+                <button type="button" class="btn btn-grey btn-sm" id="star<%= i %>" aria-label="Left Align" onClick="handleStar(<%= i+1 %>)">
+                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                </button>
+              <% end %>
+              <%= text_field_tag "star", nil, maxlength: 1, class: "dhidden" %>
             </div>
-        </div>
+          <% end %>
+          <%= submit_tag "フィルター", class: "btn btn-primary" %>
+        <% end %>
+      </div>
     </div>
-    <% if @keyword && @hotels.present? %>
-        <h2 class="text-center"><span>名前で検索する結果</span><span style="color: green"> "<%= @keyword %>"</span></h2>
+  </div>
+  <% if @keyword && @hotels.present? %>
+    <h2 class="text-center"><span>名前で検索する結果</span><span style="color: green"> "<%= @keyword %>"</span></h2>
+  <% end %>
+  <div class="col-sm-8 info" >
+    <% if @keyword && @hotels.blank? && @hotels2.blank? %>
+      <h2 class="text-center"><span>結果がない </span><span style="color: green"> "<%= @keyword %>"</span></h2>
     <% end %>
-    <div class="col-sm-8 info" >
-        <% if @keyword && @hotels.blank? && @hotels2.blank? %>
-            <h2 class="text-center"><span>結果がない </span><span style="color: green"> "<%= @keyword %>"</span></h2>
-        <% end %>
-        <div class="row">
-            <ul class="pager">
-                <%= paginate @hotels, params: { star: params[:star], commit: 'フィルター' } %>
-            </ul>
-        </div>
-        <% @hotels.each do |hotel| %>
-            <div class="row well hotel">
-                <div class="col-md-7 abt-left">
-                    <%= image_tag hotel.hotel_pictures.first.picture.url, alt: hotel.name, class:"img-bn image-custom" %>
-                </div>
-                <div class="col-sm-5 hotel-information">
-                    <h4><%= link_to hotel.name, hotel_path(hotel.id) %></h4>
-                    <p><%= hotel.address %></p>
-                    <p><%= link_to "詳細を見る", hotel_path(hotel.id) %></p>
-                    <div class="rating-block">
-                      <% if hotel.average("quality") %>
-                      <% for i in 1..5 do %>
-                        <% if i > hotel.average("quality").avg.round(0)%>
-                          <%= image_tag "star-off", class: "show-rate"%>
-                        <% else %>
-                          <%= image_tag "star-on", class: "show-rate"%>
-                        <% end %>
-                      <% end %>
-                        <h4>
-                          レート人数：<%= hotel.rates("quality").count %>
-                        </h4>
-                      <% end %>
-                    </div>
-                </div>
-            </div>
-        <% end %>
-        <div class="row">
-            <ul class="pager">
-                <%= paginate @hotels, params: { star: params[:star], commit: 'フィルター' } %>
-            </ul>
-        </div>
+    <div class="row">
+      <ul class="pager">
+        <%= paginate @hotels, params: { star: params[:star], commit: 'フィルター' } %>
+      </ul>
     </div>
-    <div class="col-sm-3 sidebar">
-    </div>
-    <% if @keyword && @hotels2.present? %>
-
-        <div class="col-sm-8 info" >
-            <h2 class="text-center"><span>住所で検索する結果</span><span style="color: green"> "<%= @keyword %>"</span></h2>
-            <div class="row">
-                <ul class="pager">
-                    <%= paginate @hotels2, params: { star: params[:star], commit: 'フィルター' } %>
-                </ul>
-            </div>
-            <% @hotels2.each do |hotel| %>
-                <div class="row well hotel">
-                    <div class="col-md-7 abt-left">
-                        <%= image_tag hotel.hotel_pictures.first.picture.url, alt: hotel.name, class:"img-bn" %>
-                    </div>
-                    <div class="col-sm-5 hotel-information">
-                        <h4><%= link_to hotel.name, hotel_path(hotel.id) %></h4>
-                        <p><%= hotel.address %></p>
-                        <p><%= link_to "詳細を見る", hotel_path(hotel.id) %></p>
-                        <% if hotel.average("quality") %>
-                        <div class="rating-block">
-                          <h4>
-                            レーティング: <span style="color: red;"><bold><%= hotel.average("quality").avg.round(1) %></bold></span>
-                            (<%= hotel.rates("quality").count %> 回)
-                          </h4>
-                        </div>
-                        <% end %>
-                    </div>
-                </div>
+    <% @hotels.each do |hotel| %>
+      <div>
+        <div class="row well hotel">
+          <div class="col-md-7 abt-left">
+            <% if hotel.hotel_pictures.first %>
+              <%= image_tag hotel.hotel_pictures.first.picture.url, alt: hotel.name, class:"img-bn image-custom" %>
             <% end %>
-            <div class="row">
-                <ul class="pager">
-                    <%= paginate @hotels2, params: { star: params[:star], commit: 'フィルター' } %>
-                </ul>
+          </div>
+            <div class="col-sm-5 hotel-information">
+              <h4><%= link_to hotel.name, hotel_path(hotel.id) %></h4>
+              <p><%= hotel.address %></p>
+              <p><%= link_to "詳細を見る", hotel_path(hotel.id) %></p>
+              <div class="rating-block">
+                <% if hotel.average("quality") %>
+                  <div style="font-size: 24px">
+                    <i class="fas fa-heart" style="color:red"></i>
+                    <span><%= 10*hotel.average("quality").avg.round(3) %>%</span>
+                  </div>
+                  <%
+=begin%>
+ <div style="font-size: 18px">
+                    <i class="fas fa-thumbs-up" style="color:green;"></i>
+                    <span><%= hotel.rates("quality").group(:stars).count[5] %></span>
+                    &nbsp; &nbsp; &nbsp; &nbsp;
+                    <i class="fas fa-thumbs-down" style="color:green;"></i>
+                    <span><%= hotel.rates("quality").group(:stars).count[1] %></span>
+                  </div> 
+<%
+=end%>
+                  <h4>
+                    レート人数：<%= hotel.rates("quality").count %>
+                  </h4>
+                <% else %>
+                  <h4>
+                    レート人数：0
+                  </h4>
+                <% end %>
+              </div>
             </div>
         </div>
+      </div>
     <% end %>
+    
+    <div class="row">
+      <ul class="pager">
+        <%= paginate @hotels, params: { star: params[:star], commit: 'フィルター' } %>
+      </ul>
+    </div>
+  </div>
+  <div class="col-sm-3 sidebar">
+  </div>
+  <% if @keyword && @hotels2.present? %>
+
+    <div class="col-sm-8 info" >
+      <h2 class="text-center"><span>住所で検索する結果</span><span style="color: green"> "<%= @keyword %>"</span></h2>
+      <div class="row">
+        <ul class="pager">
+          <%= paginate @hotels2, params: { star: params[:star], commit: 'フィルター' } %>
+        </ul>
+      </div>
+      <% @hotels2.each do |hotel| %>
+        <div class="row well hotel">
+          <div class="col-md-7 abt-left">
+            <%= image_tag hotel.hotel_pictures.first.picture.url, alt: hotel.name, class:"img-bn" %>
+          </div>
+          <div class="col-sm-5 hotel-information">
+            <h4><%= link_to hotel.name, hotel_path(hotel.id) %></h4>
+            <p><%= hotel.address %></p>
+            <p><%= link_to "詳細を見る", hotel_path(hotel.id) %></p>
+            <% if hotel.average("quality") %>
+            <div class="rating-block">
+              <h4>
+                レーティング: <span style="color: red;"><bold><%= hotel.average("quality").avg.round(1) %></bold></span>
+                (<%= hotel.rates("quality").count %> 回)
+              </h4>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      <div class="row">
+        <ul class="pager">
+          <%= paginate @hotels2, params: { star: params[:star], commit: 'フィルター' } %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
 
 </div>

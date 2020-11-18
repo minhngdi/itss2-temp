@@ -27,6 +27,9 @@
       <% if !user_signed_in? %>
       <ul class="nav navbar-nav navbar-right">
         <%if !current_admin %>
+          <li><%= link_to "ログイン", new_user_session_path %></li>
+  				<li><%= link_to "サインアップ", new_user_registration_path %></li>
+
           <%# <li><%= link_to "ログイン", new_user_session_path %></li>
   				<%# <li><%= link_to "サインアップ", new_user_registration_path %></li> %> %>
         <%end%>
@@ -67,7 +70,9 @@
               </div>
               <!-- end notify title -->
               <!-- notify content -->
-              <div class="drop-content">
+              <%
+=begin%>
+ <div class="drop-content">
 
                 <% convs.each do |conv| %>
                   <% opp = conv.author_id == current_user.id ? conv.receiver_id : conv.author_id %>
@@ -83,7 +88,9 @@
                     </div>
                   </li>
                 <% end %>
-              </div>
+              </div> 
+<%
+=end%>
               <div class="notify-drop-footer text-center">
                 <a href=""><i class="fa fa-eye"></i> Conversations (<b><%= convs.count %></b>)</a>
               </div>

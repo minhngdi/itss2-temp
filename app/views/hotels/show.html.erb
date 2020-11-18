@@ -14,24 +14,24 @@
         </div>
         <div class="col-sm-4 img-hotel-right">
             <div class="row">
-							<%if @pictures[0]%>
+							<% if @pictures[0] %>
 								<%= image_tag @pictures[0].picture.url, alt: "hotel logo"%>
 							<% else %>
-								<%= link_to image_tag("fukusou.jpg", alt: "hotel logo")%>
+								<%= link_to image_tag("fukusou-2.jpg", alt: "hotel logo")%>
 							<% end %>
             </div>
             <div class="row">
 							<%if @pictures[1] %>
 								<%= image_tag @pictures[1].picture.url, alt: "hotel logo"%>
 							<% else %>
-								<%= link_to image_tag("fukusou.jpg", alt: "hotel logo")%>
+								<%= link_to image_tag("fukusou-2.jpg", alt: "hotel logo")%>
 							<% end %>
             </div>
             <div class="row">
 							<%if @pictures[2] %>
 								<%= image_tag @pictures[2].picture.url, alt: "hotel logo"%>
 							<% else %>
-								<%= link_to image_tag("fukusou.jpg", alt: "hotel logo")%>
+								<%= link_to image_tag("fukusou-2.jpg", alt: "hotel logo")%>
 							<% end %>
             </div>
         </div>
@@ -160,28 +160,28 @@
           <% else %>
             <li class="list-group-item glyphicon glyphicon-unchecked">
           <% end %>
-        		<span class="glyphicon glyphicon-signal"> 結婚式</span>
+        		<span> 結婚式</span>
         	</li>
         	<% if @hotel.parking %>
            <li class="list-group-item glyphicon glyphicon-check">
           <% else %>
             <li class="list-group-item glyphicon glyphicon-unchecked">
           <% end %>
-        		<span class="glyphicon glyphicon-ruble"> デート</span>
+        		<span> デート</span>
         	</li>
         	<% if @hotel.breakfast %>
            <li class="list-group-item glyphicon glyphicon-check">
           <% else %>
             <li class="list-group-item glyphicon glyphicon-unchecked">
           <% end %>
-        		<span class="glyphicon glyphicon-fire"> 旅行</span>
+        		<span> 旅行</span>
         	</li>
         	<% if @hotel.pool %>
            <li class="list-group-item glyphicon glyphicon-check">
           <% else %>
             <li class="list-group-item glyphicon glyphicon-unchecked">
           <% end %>
-        		<span class="glyphicon glyphicon-grain"> パーティー</span>
+        		<span> パーティー</span>
         	</li>
         </ul>
         <div>
