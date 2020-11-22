@@ -2,7 +2,7 @@
   <div class="col-sm-3 sidebar">
     <div class="row">
       <div>
-        <h2>イベント</h2>
+        <h2>イベントと性</h2>
         <%= form_tag 'recommends', method: :get do %>
           <div class="list-group">
             <p class="list-group-item">
@@ -16,6 +16,12 @@
             </p>
             <p class="list-group-item">
               <%= check_box_tag 'parking' %>&nbsp; 旅行
+            </p>
+            <p class="list-group-item">
+              <%= check_box_tag 'man' %>&nbsp; 男
+            </p>
+            <p class="list-group-item">
+              <%= check_box_tag 'women' %>&nbsp; 女
             </p>
           </div>
           <% if false %>
@@ -56,8 +62,18 @@
           </div>
             <div class="col-sm-5 hotel-information">
               <h4><%= link_to hotel.name, hotel_path(hotel.id) %></h4>
-              <p><%= hotel.address %></p>
-              <p><%= link_to "詳細を見る", hotel_path(hotel.id) %></p>
+              <% if hotel.wifi %>
+                <span> 結婚式、</span>
+              <% end %> 
+              <% if hotel.parking %>
+                <span> デート、</span>
+              <% end %> 
+              <% if hotel.breakfast %>
+                <span> 旅行、</span>
+              <% end %>
+              <% if hotel.pool %>
+                <span> パーティー</span>
+              <% end %>
               <div class="rating-block">
                 <% if hotel.average("quality") %>
                   <div style="font-size: 24px">

@@ -19,7 +19,7 @@ class Hotel < ApplicationRecord
 
 
   def self.filter_by_service(params)
-    services = params.keys & ["wifi", "pool", "breakfast", "parking"]
+    services = params.keys & ["wifi", "pool", "breakfast", "parking","man","women"]
     hotels = Hotel.all
     services.each do |service|
       hotels = hotels.where(service, true)
