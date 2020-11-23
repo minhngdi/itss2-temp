@@ -1,7 +1,7 @@
 Hotel.create!(name: "パーティードレス", address: "パーティー、結婚式",
-phone_number: Faker::PhoneNumber.cell_phone, pool: true, parking: true)
+phone_number: Faker::PhoneNumber.cell_phone, pool: true, parking: true, gender: false)
 Hotel.create!(name: "ドレス", address: "デート、結婚式",
-phone_number: Faker::PhoneNumber.cell_phone, pool: true, parking: true)
+phone_number: Faker::PhoneNumber.cell_phone, pool: true, parking: true, gender: false)
 
 20.times do |i|
   Hotel.create!(name: ["ドレス#{i+1}","スーツ#{i+1}"].sample, address: ["結婚式","パーティー","デート","旅行"].sample,

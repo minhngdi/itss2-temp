@@ -19,11 +19,17 @@ class Hotel < ApplicationRecord
 
 
   def self.filter_by_service(params)
-    services = params.keys & ["wifi", "pool", "breakfast", "parking","man","women"]
+    services = params.keys & ["wifi", "pool", "breakfast", "parking"]
     hotels = Hotel.all
     services.each do |service|
       hotels = hotels.where(service, true)
     end
+    if params[:gender] == "true"
+      hotels = hotels.where(gender: true)
+    elsif params[:gender] == "false"
+      hotels = hotels.where(gender: false)
+    end
+    
     if (params.include? "star") && (params[:star].to_i >=1) && (params[:star].to_i <=5)
       hotels.each do |hotel|
         if hotel.average("quality")
@@ -33,6 +39,23 @@ class Hotel < ApplicationRecord
       end
       hotels = hotels.where('rate_avg >= ?', params[:star])
     end
+
+    if params[:event] == "結婚式"
+      hotels = hotels.where(wifi: true)
+    elsif params[:event] == "パーティー"
+      hotels = hotels.where(pool: true)
+    elsif params[:event] == "デート"
+      hotels = hotels.where(parking: true)
+    elsif params[:event] == "旅行"
+      hotels = hotels.where(breakfast: true)
+    end
+    
+    if params[:gender] == "男"
+      hotels = hotels.where(gender: true)
+    elsif params[:gender] == "女"
+      hotels = hotels.where(gender: false)
+    end
+
     return hotels
   end
 end
