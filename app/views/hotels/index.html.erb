@@ -22,6 +22,19 @@
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <%= radio_button_tag 'gender', false %> &nbsp; 女
             </p>
+            <p class="list-group-item">
+              肌の色：<br>
+              <%= radio_button_tag 'skin_color', "whites" %> 白 &nbsp;&nbsp;
+              <%= radio_button_tag 'skin_color', "yellows" %> 黄 &nbsp;&nbsp;
+              <%= radio_button_tag 'skin_color', "blacks" %> 黒 &nbsp;&nbsp;
+            </p>
+            <p class="list-group-item">
+              髪の色：<br>
+              <%= radio_button_tag 'hair_color', "white" %> 白 &nbsp;&nbsp;
+              <%= radio_button_tag 'hair_color', "yellow" %> 黄 &nbsp;&nbsp;
+              <%= radio_button_tag 'hair_color', "black" %> 黒 &nbsp;&nbsp;
+              <%= radio_button_tag 'hair_color', "moss_green" %> モスグリーン
+            </p>
           </div>
           <% if false %>
             <h2>使用した人の評価</h2>
@@ -80,6 +93,31 @@
               <% end %>
               <% if hotel.gender == false %>
                 <span style="color: #18bc9c">性：</span> 女
+              <% end %>
+              <br>
+
+              <% if hotel.skin_color == "whites" %>
+                <span style="color: #18bc9c">肌の色：</span> 白
+              <% end %>
+              <% if hotel.skin_color == "yellows" %>
+                <span style="color: #18bc9c">肌の色：</span> 黄
+              <% end %>
+              <% if hotel.skin_color == "blacks" %>
+                <span style="color: #18bc9c">肌の色：</span> 黒
+              <% end %>
+              <br>
+
+              <% if hotel.hair_color == "white" %>
+                <span style="color: #18bc9c">肌の色：</span> 白
+              <% end %>
+              <% if hotel.hair_color == "yellow" %>
+                <span style="color: #18bc9c">肌の色：</span> 黄
+              <% end %>
+              <% if hotel.hair_color == "black" %>
+                <span style="color: #18bc9c">肌の色：</span> 黒
+              <% end %>
+              <% if hotel.hair_color == "moss_green" %>
+                <span style="color: #18bc9c">肌の色：</span> モスグリーン
               <% end %>
 
               <div class="rating-block">
