@@ -8,6 +8,9 @@ class Hotel < ApplicationRecord
   has_many :hotel_pictures
   has_many :conversations
 
+  enum skin_color: {whites: 1, yellows: 2, blacks: 3}
+  enum hair_color: {white: 1, yellow: 2, black: 3, moss_green: 4}
+
   accepts_nested_attributes_for :hotel_pictures
   attr_accessor :hotel_pictures_cache, :remove_hotel_pictures
   ratyrate_rateable "quality"
@@ -54,6 +57,24 @@ class Hotel < ApplicationRecord
       hotels = hotels.where(gender: true)
     elsif params[:gender] == "女"
       hotels = hotels.where(gender: false)
+    end
+
+    if params[:skin_color] == "whites" || params[:skin_color] == "白"
+      hotels = hotels.where(skin_color: "whites")
+    elsif params[:skin_color] == "yellows" || params[:skin_color] == "黄"
+      hotels = hotels.where(skin_color: "yellows")
+    elsif params[:skin_color] == "blacks" || params[:skin_color] == "黒"
+      hotels = hotels.where(skin_color: "blacks")
+    end
+
+    if params[:hair_color] == "white" || params[:hair_color] == "白"
+      hotels = hotels.where(hair_color: "white")
+    elsif params[:hair_color] == "yellow" || params[:hair_color] == "黄"
+      hotels = hotels.where(hair_color: "yellow")
+    elsif params[:hair_color] == "black" || params[:hair_color] == "黒"
+      hotels = hotels.where(hair_color: "black")
+    elsif params[:hair_color] == "moss_green" || params[:hair_color] == "モスグリーン"
+      hotels = hotels.where(hair_color: "moss_green")
     end
 
     return hotels
