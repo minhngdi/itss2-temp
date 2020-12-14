@@ -51,8 +51,12 @@
         </p>
         <% if user_signed_in? %>
           <% if comment.user == current_user %>
-            <td><%= link_to "編集", edit_comment_path(comment), remote: true,
-              class: "btn btn-warning buttom-size" %></td>
+            <%
+=begin%>
+ <td><%= link_to "編集", edit_comment_path(comment), remote: true,
+              class: "btn btn-warning buttom-size" %></td> 
+<%
+=end%>
             <td><%= link_to "削除", comment_path(comment), method: :delete,
               remote: true, class: "btn btn-danger buttom-size",
               data: {confirm: "Are you sure?"} %>
