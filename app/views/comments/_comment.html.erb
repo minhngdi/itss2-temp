@@ -6,36 +6,51 @@
         <%= image_tag(comment.user.picture, class: "avatar")%>
       <% else %>
         <%= image_tag("user", class: "avatar") %>
-        <%= comment.user.name %>
       <% end %>
 
     </div>
 
     <div class="col-md-10">
       <div class="post-comments">
-        <p class="meta"><span id="comment_time<%= comment.id %>">
-          <% if (comment.created_at == comment.updated_at) %>
-            <%= comment.created_at.in_time_zone("Hanoi").strftime("%d/%m/%Y %H:%M") %></span>
-          <% else %>
-            <%= t "updated_at" %> <%= comment.updated_at.in_time_zone("Hanoi").strftime("%d/%m/%Y %H:%M") %></span>
-          <% end %>
-          <%= t "by" %> <%= comment.user.name %>
-          <% if user_signed_in? && comment.user != current_user %>
-            <%= link_to image_tag('chat.png', class: "chat1-icon"), new_personal_message_path(receiver_id: comment.user, hotel_id: @hotel.id) %>
-          <% end %>
-        </p>
+        <div class="row meta">
+          <div class="col-md-4">
+            <span id="comment_time<%= comment.id %>">
+            <% if (comment.created_at == comment.updated_at) %>
+              <%= time_ago_in_words(comment.created_at.in_time_zone("Hanoi")) %></span>
+            <% else %>
+              <%= time_ago_in_words(comment.updated_at.in_time_zone("Hanoi")) %></span>
+            <% end %>
+            &nbsp;&nbsp;<i class="fas fa-globe-americas"></i>
+          </div>
+          <div class="col-md-8 text-right">
+            <span><%= t "by" %> <%= comment.user.name %></span>
+          </div>
+        </div>
         <% if comment.commentable_type == "Hotel" %>
           <i class="pull-right">
             <small><button class="btn-sm btn-success button<%= comment.id %>">
               <% if user_signed_in? %>返信<% end %>
             </button></small>
             <%if comment.user != current_user%>
-            <small>
-              <%= link_to  new_report_path(comment: comment.id), remote: true do %>
-                <button class="btn-sm btn-danger button">報告
-                </button>
+              <small>
+                <%= link_to  new_report_path(comment: comment.id), remote: true do %>
+                  <button class="btn-sm btn-danger button">報告
+                  </button>
+                <% end %>
+              </small>
+            <% end %>
+            <% if user_signed_in? %>
+              <small>
+              <% if comment.user == current_user %>
+                <td><%= link_to comment_path(comment), method: :delete,
+                  remote: true,
+                  data: {confirm: "Are you sure?"} do %>
+                  <button class="btn-sm btn-danger button">削除
+                  </button>
+                  <% end %>
+                </td>
               <% end %>
-            </small>
+              </small>
             <% end %>
           </i>
           <div id="modal-window" class="modal fade" role="dialog"
@@ -49,20 +64,7 @@
         <p id="comment_body<%= comment.id %>">
           <%= comment.body %>
         </p>
-        <% if user_signed_in? %>
-          <% if comment.user == current_user %>
-            <%
-=begin%>
- <td><%= link_to "編集", edit_comment_path(comment), remote: true,
-              class: "btn btn-warning buttom-size" %></td> 
-<%
-=end%>
-            <td><%= link_to "削除", comment_path(comment), method: :delete,
-              remote: true, class: "btn btn-danger buttom-size",
-              data: {confirm: "Are you sure?"} %>
-            </td>
-          <% end %>
-        <% end %>
+        
           <% if comment.commentable_type == "Hotel" %>
             <ul class="comments_comment<%= comment.id %>">
               <%= render comment.comments %>

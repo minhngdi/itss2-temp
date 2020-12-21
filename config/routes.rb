@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   get 'informations/show'
+  get '/compares', to: 'compares#index'
+  get '/compares/:id', to: 'compares#show'
+  
   post '/rate' => 'rater#create', :as => 'rate'
   devise_for :admins, controllers: {
         sessions: "admins/sessions"

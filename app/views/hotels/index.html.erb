@@ -64,93 +64,103 @@
         <%= paginate @hotels, params: { star: params[:star], commit: 'フィルター' } %>
       </ul>
     </div>
-    <% @hotels.each do |hotel| %>
-      <div>
-        <div class="row well hotel">
-          <div class="col-md-7 abt-left">
-            <% if hotel.hotel_pictures.first %>
-              <%= image_tag hotel.hotel_pictures.first.picture.url, alt: hotel.name, class:"img-bn image-custom" %>
-            <% end %>
-          </div>
-            <div class="col-sm-5 hotel-information">
-              <h4><%= link_to hotel.name, hotel_path(hotel.id) %></h4>
-              <span style="color: #18bc9c">イベント：</span>
-              <% if hotel.wifi %>
-                <span>&nbsp;結婚式</span>
-              <% end %> 
-              <% if hotel.parking %>
-                <span>&nbsp;デート</span>
-              <% end %> 
-              <% if hotel.breakfast %>
-                <span>&nbsp;旅行</span>
-              <% end %>
-              <% if hotel.pool %>
-                <span>&nbsp;パーティー</span>
-              <% end %>
-              <br>
-              <% if hotel.gender == true %>
-                <span style="color: #18bc9c">性：</span> 男
-              <% end %>
-              <% if hotel.gender == false %>
-                <span style="color: #18bc9c">性：</span> 女
-              <% end %>
-              <br>
 
-              <% if hotel.skin_color == "whites" %>
-                <span style="color: #18bc9c">肌の色：</span> 白
-              <% end %>
-              <% if hotel.skin_color == "yellows" %>
-                <span style="color: #18bc9c">肌の色：</span> 黄
-              <% end %>
-              <% if hotel.skin_color == "blacks" %>
-                <span style="color: #18bc9c">肌の色：</span> 黒
-              <% end %>
-              <br>
-
-              <% if hotel.hair_color == "white" %>
-                <span style="color: #18bc9c">肌の色：</span> 白
-              <% end %>
-              <% if hotel.hair_color == "yellow" %>
-                <span style="color: #18bc9c">肌の色：</span> 黄
-              <% end %>
-              <% if hotel.hair_color == "black" %>
-                <span style="color: #18bc9c">肌の色：</span> 黒
-              <% end %>
-              <% if hotel.hair_color == "moss_green" %>
-                <span style="color: #18bc9c">肌の色：</span> モスグリーン
-              <% end %>
-
-              <div class="rating-block">
-                <% if hotel.average("quality") %>
-                  <div style="font-size: 24px">
-                    <i class="fas fa-heart" style="color:red"></i>
-                    <span><%= 10*2*hotel.average("quality").avg.round(3) %>%</span>
-                  </div>
-                  <%
+    <%= form_tag '/compares', method: :get do %>
+      <%
 =begin%>
- <div style="font-size: 18px">
-                    <i class="fas fa-thumbs-up" style="color:green;"></i>
-                    <span><%= hotel.rates("quality").group(:stars).count[5] %></span>
-                    &nbsp; &nbsp; &nbsp; &nbsp;
-                    <i class="fas fa-thumbs-down" style="color:green;"></i>
-                    <span><%= hotel.rates("quality").group(:stars).count[1] %></span>
-                  </div> 
+ <div class="text-right">
+        <%= submit_tag "比較", class: "btn btn-info" %>
+      </div> 
 <%
 =end%>
-                  <h4>
-                    レート人数：<%= hotel.rates("quality").count %>
-                  </h4>
-                <% else %>
-                  <h4>
-                    レート人数：0
-                  </h4>
-                <% end %>
-              </div>
+      <% @hotels.each do |hotel| %>
+        <div>
+          <div class="row well hotel">
+            <div class="col-md-7 abt-left">
+              <% if hotel.hotel_pictures.first %>
+                <%= image_tag hotel.hotel_pictures.first.picture.url, alt: hotel.name, class:"img-bn image-custom" %>
+              <% end %>
             </div>
+              <div class="col-sm-5 hotel-information">
+                <h4><%= link_to hotel.name, hotel_path(hotel.id) %></h4>
+                <span style="color: #18bc9c">イベント：</span>
+                <% if hotel.wifi %>
+                  <span>&nbsp;結婚式</span>
+                <% end %> 
+                <% if hotel.parking %>
+                  <span>&nbsp;デート</span>
+                <% end %> 
+                <% if hotel.breakfast %>
+                  <span>&nbsp;旅行</span>
+                <% end %>
+                <% if hotel.pool %>
+                  <span>&nbsp;パーティー</span>
+                <% end %>
+                <br>
+                <% if hotel.gender == true %>
+                  <span style="color: #18bc9c">性：</span> 男
+                <% end %>
+                <% if hotel.gender == false %>
+                  <span style="color: #18bc9c">性：</span> 女
+                <% end %>
+                <br>
+
+                <% if hotel.skin_color == "whites" %>
+                  <span style="color: #18bc9c">肌色：</span> 白
+                <% end %>
+                <% if hotel.skin_color == "yellows" %>
+                  <span style="color: #18bc9c">肌色：</span> 黄
+                <% end %>
+                <% if hotel.skin_color == "blacks" %>
+                  <span style="color: #18bc9c">肌色：</span> 黒
+                <% end %>
+                <br>
+
+                <% if hotel.hair_color == "white" %>
+                  <span style="color: #18bc9c">髪色：</span> 白
+                <% end %>
+                <% if hotel.hair_color == "yellow" %>
+                  <span style="color: #18bc9c">髪色：</span> 黄
+                <% end %>
+                <% if hotel.hair_color == "black" %>
+                  <span style="color: #18bc9c">髪色：</span> 黒
+                <% end %>
+                <% if hotel.hair_color == "moss_green" %>
+                  <span style="color: #18bc9c">髪色：</span> モスグリーン
+                <% end %>
+
+                <div class="rating-block">
+                  <% if hotel.average("quality") %>
+                    <div style="font-size: 24px">
+                      <i class="fas fa-heart" style="color:red"></i>
+                      <span><%= 10*2*hotel.average("quality").avg.round(3) %>%</span>
+                    </div>
+                    <h4>
+                      レート人数：<%= hotel.rates("quality").count %>
+                    </h4>
+                  <% else %>
+                    <h4>
+                      レート人数：0
+                    </h4>
+                  <% end %>
+                </div>
+
+                <div class="text-center">
+                  <br>
+                  <%
+=begin%>
+ <%= check_box_tag 'compares_ids[]', hotel.id -%> &nbsp;&nbsp;比較 
+<%
+=end%>
+                  <%= link_to "詳細", hotel_path(hotel.id), class: "btn btn-success" %>
+                  &nbsp;&nbsp;
+                  <%= link_to "比較", { controller: "compares", action: "show", id: hotel.id }, class: "btn btn-danger" %>
+                </div>
+              </div>
+          </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
-    
     <div class="row">
       <ul class="pager">
         <%= paginate @hotels, params: { star: params[:star], commit: 'フィルター' } %>
