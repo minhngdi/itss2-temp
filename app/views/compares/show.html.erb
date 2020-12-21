@@ -1,0 +1,94 @@
+<div class="col-sm-5 sidebar">
+  <div class="row">
+    <div>
+      <div class="row well hotel" style="position: fixed; width: 500px; height: 700px">
+        <div class="col-md-12 abt-left">
+          <%= image_tag @hotel.hotel_pictures.first.picture.url, alt: @hotel.name, class:"img-bn", style:"height: 500px" %>
+        </div>
+        <div class="col-sm-5">
+          <br>
+          <h4><%= link_to @hotel.name, hotel_path(@hotel.id) %></h4>
+          <p><%= @hotel.address %></p>
+          <p><%= link_to "詳細を見る", hotel_path(@hotel.id) %></p>
+        </div>
+
+        <div class="col-sm-5">
+          <br>
+          <% if @hotel.average("quality") %>
+            <div style="font-size: 24px">
+              <i class="fas fa-heart" style="color:red"></i>
+              <span><%= 10*2*@hotel.average("quality").avg.round(3) %>%</span>
+            </div>
+            <h4>
+              レート人数：<%= @hotel.rates("quality").count %>
+            </h4>
+          <% else %>
+            <h4>
+              レート人数：0
+            </h4>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-sm-1" >
+</div> 
+<div class="col-sm-5 info" >
+  <h2 class="text-center">服装を比較</h2>
+  <br>
+  <div class="navbar-form" role="search">
+    <%= form_tag({ controller: "compares", action: "show", id: @hotel.id }, method: "get", class:"text-center") do %>
+      <%= text_field_tag "search", params[:search], placeholder: "服装名を記入してください。", class: "form-control", style: "width: 280px;" %>
+      <%= submit_tag "検索", type: "submit", class: "btn btn-success" %>
+    <% end %>
+  </div>
+  <div class="row">
+    <ul class="pager">
+      <%= paginate @hotels, params: { star: params[:star], commit: 'フィルター' } %>
+    </ul>
+  </div>
+  <% if @hotels.empty? %>
+    <h3 class="text-center">結果がない "<%= params[:search] %>"</h3>
+  <% else %>
+    <% @hotels.each do |hotel| %>
+      <% if hotel.id != @hotel.id %>
+        <div class="row well hotel">
+          <div class="col-md-7 abt-left">
+            <% if hotel.hotel_pictures.first %>
+              <%= image_tag hotel.hotel_pictures.first.picture.url, alt: hotel.name, class:"img-bn image-custom" %>
+            <% end %>
+          </div>
+            <div class="col-sm-5 hotel-information">
+              <h4><%= link_to hotel.name, hotel_path(hotel.id) %></h4>
+              <span style="color: #18bc9c">イベント：</span>
+              <% if hotel.wifi %>
+                <span>&nbsp;結婚式</span>
+              <% end %>
+              <% if hotel.parking %>
+                <span>&nbsp;デート</span>
+              <% end %>
+              <% if hotel.breakfast %>
+                <span>&nbsp;旅行</span>
+              <% end %>
+              <% if hotel.pool %>
+                <span>&nbsp;パーティー</span>
+              <% end %>
+              <br>
+
+              <div>
+                <br>
+                <%= link_to "比較", compares_path(:compares_ids => [params[:id], hotel.id]), class: "btn btn-danger" %>
+              </div>
+            </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+  
+  <div class="row">
+    <ul class="pager">
+      <%= paginate @hotels, params: { star: params[:star], commit: 'フィルター' } %>
+    </ul>
+  </div>
+</div>

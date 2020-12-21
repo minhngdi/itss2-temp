@@ -1,0 +1,199 @@
+<h1 class="text-center">服装を比較</h1>
+<br><br>
+<% if @no_hope %>
+  <h3 style="text-align: center;">比較する服装を2つ選んでください</h3>
+<% else %>
+  <div>
+    <div class="row text-center">
+      <div class="col-sm-4 info">
+        <%= image_tag @hotels1.hotel_pictures.first.picture.url, alt: @hotels1.name, class:"img-bn image-custom", style:"height: 450px" %>
+      </div>
+      <div class="col-sm-3 info" >
+        <br><br><br>
+        <%= image_tag "vs.png", alt:"", style:"width:150px; height: 150px" %> 
+      </div>
+      <div class="col-sm-4 info" >
+        <%= image_tag @hotels2.hotel_pictures.first.picture.url, alt: @hotels1.name, class:"img-bn image-custom", style:"height: 450px" %>
+      </div>
+    </div>
+    <hr style="margin-top: 10px; margin-bottom: 10px">
+
+    <div class="row text-center">
+      <div class="col-sm-4 info">
+        <p><%= @hotels1.name %></p>
+      </div>
+      <div class="col-sm-3 info" >
+        <%= image_tag "name.png", alt:"", style:"width:50px; height: 50px" %>
+      </div>
+      <div class="col-sm-4 info" >
+        <p><%= @hotels2.name %></p>
+      </div>
+    </div>
+    <hr style="margin-top: 10px; margin-bottom: 10px">
+
+    <div class="row text-center">
+      <div class="col-sm-4 info">
+        <% if @hotels1.average("quality") %>
+          <p><%= @hotels1.rates("quality").count %></p>
+        <% else %>
+          <p>0</p>
+        <% end %>
+      </div>
+      <div class="col-sm-3 info" >
+        <%= image_tag "number.png", alt:"", style:"width:30px; height: 30px" %>
+        <p style="color: #18bc9c">(レート人数)</p>
+      </div>
+      <div class="col-sm-4 info" >
+        <% if @hotels2.average("quality") %>
+          <p><%= @hotels2.rates("quality").count %></p>
+        <% else %>
+          <p>0</p>
+        <% end %>
+      </div>
+    </div>
+    <hr style="margin-top: 10px; margin-bottom: 10px">
+
+    <div class="row text-center">
+      <div class="col-sm-4 info">
+        <% if @hotels1.average("quality") %>
+          <span><%= 10*2*@hotels1.average("quality").avg.round(3) %>%</span>
+        <% else %>
+          <p>0</p>
+        <% end %>
+      </div>
+      <div class="col-sm-3 info" >
+        <i class="fas fa-heart fa-2x" style="color:red"></i>
+      </div>
+      <div class="col-sm-4 info" >
+        <% if @hotels2.average("quality") %>
+          <span><%= 10*2*@hotels2.average("quality").avg.round(3) %>%</span>
+        <% else %>
+          <p>0</p>
+        <% end %>
+      </div>
+    </div>
+    <hr style="margin-top: 10px; margin-bottom: 10px">
+
+    <div class="row text-center">
+      <div class="col-sm-4 info">
+        <% if @hotels1.wifi %>
+          <span>&nbsp;結婚式</span>
+        <% end %> 
+        <% if @hotels1.parking %>
+          <span>&nbsp;デート</span>
+        <% end %> 
+        <% if @hotels1.breakfast %>
+          <span>&nbsp;旅行</span>
+        <% end %>
+        <% if @hotels1.pool %>
+          <span>&nbsp;パーティー</span>
+        <% end %>
+      </div>
+      <div class="col-sm-3 info" >
+        <i class="fas fa-calendar-week fa-2x" style="width:30px; height: 30px"></i>
+      </div>
+      <div class="col-sm-4 info" >
+        <% if @hotels2.wifi %>
+          <span>&nbsp;結婚式</span>
+        <% end %> 
+        <% if @hotels2.parking %>
+          <span>&nbsp;デート</span>
+        <% end %> 
+        <% if @hotels2.breakfast %>
+          <span>&nbsp;旅行</span>
+        <% end %>
+        <% if @hotels2.pool %>
+          <span>&nbsp;パーティー</span>
+        <% end %>
+      </div>
+    </div>
+    <hr style="margin-top: 10px; margin-bottom: 10px">
+
+    <div class="row text-center">
+      <div class="col-sm-4 info">
+        <% if @hotels1.gender == true %>
+          <span style="color: #18bc9c"></span> 男
+        <% end %>
+        <% if @hotels1.gender == false %>
+          <span style="color: #18bc9c"></span> 女
+        <% end %>
+      </div>
+      <div class="col-sm-3 info" >
+        <i class="fas fa-transgender fa-2x"></i>
+      </div>
+      <div class="col-sm-4 info" >
+        <% if @hotels1.gender == true %>
+          <span style="color: #18bc9c"></span> 男
+        <% end %>
+        <% if @hotels1.gender == false %>
+          <span style="color: #18bc9c"></span> 女
+        <% end %>
+      </div>
+    </div>
+    <hr style="margin-top: 10px; margin-bottom: 10px">
+
+    <div class="row text-center">
+      <div class="col-sm-4 info">
+        <% if @hotels1.skin_color == "whites" %>
+          <p>白</p>
+        <% end %>
+        <% if @hotels1.skin_color == "yellows" %>
+          <p>黄</p>
+        <% end %>
+        <% if @hotels1.skin_color == "blacks" %>
+          <p>黒</p>
+        <% end %>
+      </div>
+      <div class="col-sm-3 info" >
+        <%= image_tag "skin.png", alt:"", style:"width:30px; height: 30px" %>
+      </div>
+      <div class="col-sm-4 info" >
+        <% if @hotels2.skin_color == "whites" %>
+          <p>白</p>
+        <% end %>
+        <% if @hotels2.skin_color == "yellows" %>
+          <p>黄</p>
+        <% end %>
+        <% if @hotels2.skin_color == "blacks" %>
+          <p>黒</p>
+        <% end %>
+      </div>
+    </div>
+    <hr style="margin-top: 10px; margin-bottom: 10px">
+
+    <div class="row text-center">
+      <div class="col-sm-4 info">
+        <% if @hotels1.hair_color == "white" %>
+          <p>白</p>
+        <% end %>
+        <% if @hotels1.hair_color == "yellow" %>
+          <p>黄</p>
+        <% end %>
+        <% if @hotels1.hair_color == "black" %>
+          <p>黒</p>
+        <% end %>
+        <% if @hotels1.hair_color == "moss_green" %>
+          <p>モスグリーン</p>
+        <% end %>
+      </div>
+      <div class="col-sm-3 info" >
+        <%= image_tag "hair.png", alt:"", style:"width:30px; height: 30px" %>
+      </div>
+      <div class="col-sm-4 info" >
+        <% if @hotels2.hair_color == "white" %>
+          <p>白</p>
+        <% end %>
+        <% if @hotels2.hair_color == "yellow" %>
+          <p>黄</p>
+        <% end %>
+        <% if @hotels2.hair_color == "black" %>
+          <p>黒</p>
+        <% end %>
+        <% if @hotels2.hair_color == "moss_green" %>
+          <p>モスグリーン</p>
+        <% end %>
+      </div>
+    </div>
+    <hr style="margin-top: 10px; margin-bottom: 10px">
+  </div>
+<% end %>

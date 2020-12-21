@@ -66,9 +66,31 @@
         <h4>イベント: <%= @hotel.address %></h4>
         <input id="address1" class="hidden-data" value="<%= @hotel.address %>">
         <input id="address2" class="hidden-data" value="<%= @hotel.address %>">
+        <% if @hotel.skin_color == "whites" %>
+          <h4>肌色：白</h4>
+        <% end %>
+        <% if @hotel.skin_color == "yellows" %>
+          <h4>肌色：黄</h4>
+        <% end %>
+        <% if @hotel.skin_color == "blacks" %>
+          <h4>肌色：黒</h4>
+        <% end %>
+
+        <% if @hotel.hair_color == "white" %>
+          <h4>髪色：白</h4>
+        <% end %>
+        <% if @hotel.hair_color == "yellow" %>
+          <h4>髪色：黄</h4>
+        <% end %>
+        <% if @hotel.hair_color == "black" %>
+          <h4>髪色：黒</h4>
+        <% end %>
+        <% if @hotel.hair_color == "moss_green" %>
+          <h4>髪色：モスグリーン</h4>
+        <% end %>
         <br>
         <h4>Share on:</h4>
-				<%= social_share_button_tag('Share to Facebook', :url => "https://www.google.com.vn/", desc: @hotel.name) %>
+				<%= social_share_button_tag('Share to Facebook', :url => "https://yami.vn/san-pham/dam-du-tiec-khi-chat-sang-trong-823.html", desc: @hotel.name) %>
       </div>
     </div>
   </div>
