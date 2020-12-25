@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(version: 2020_12_07_123445) do
     t.boolean "pool", default: false
     t.boolean "parking", default: false
     t.float "rate_avg", default: 0.0
+    t.integer "choose_people", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "gender"
