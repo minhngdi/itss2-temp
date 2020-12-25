@@ -1,0 +1,2 @@
+module RandomRateHelper
+end

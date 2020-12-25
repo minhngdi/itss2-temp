@@ -9,13 +9,13 @@
               <%= check_box_tag 'wifi' %>&nbsp; 結婚式
             </p>
             <p class="list-group-item">
-              <%= check_box_tag 'breakfast' %>&nbsp; パーティー
+              <%= check_box_tag 'breakfast' %>&nbsp; 旅行
             </p>
             <p class="list-group-item">
-              <%= check_box_tag 'pool' %>&nbsp; デート
+              <%= check_box_tag 'pool' %>&nbsp; パーティー
             </p>
             <p class="list-group-item">
-              <%= check_box_tag 'parking' %>&nbsp; 旅行
+              <%= check_box_tag 'parking' %>&nbsp; デート
             </p>
             <p class="list-group-item">
               <%= radio_button_tag 'gender', true %> &nbsp; 男
@@ -66,13 +66,6 @@
     </div>
 
     <%= form_tag '/compares', method: :get do %>
-      <%
-=begin%>
- <div class="text-right">
-        <%= submit_tag "比較", class: "btn btn-info" %>
-      </div> 
-<%
-=end%>
       <% @hotels.each do |hotel| %>
         <div>
           <div class="row well hotel">
@@ -128,6 +121,8 @@
                 <% if hotel.hair_color == "moss_green" %>
                   <span style="color: #18bc9c">髪色：</span> モスグリーン
                 <% end %>
+                <br>
+                <span style="color: #18bc9c">選択した人数:</span> <%= hotel.choose_people %>
 
                 <div class="rating-block">
                   <% if hotel.average("quality") %>
@@ -135,23 +130,14 @@
                       <i class="fas fa-heart" style="color:red"></i>
                       <span><%= 10*2*hotel.average("quality").avg.round(3) %>%</span>
                     </div>
-                    <h4>
-                      レート人数：<%= hotel.rates("quality").count %>
-                    </h4>
+                    <h4>レート人数：<%= hotel.rates("quality").count %></h4>
                   <% else %>
-                    <h4>
-                      レート人数：0
-                    </h4>
+                    <h4>レート人数：0</h4>
                   <% end %>
                 </div>
 
                 <div class="text-center">
                   <br>
-                  <%
-=begin%>
- <%= check_box_tag 'compares_ids[]', hotel.id -%> &nbsp;&nbsp;比較 
-<%
-=end%>
                   <%= link_to "詳細", hotel_path(hotel.id), class: "btn btn-success" %>
                   &nbsp;&nbsp;
                   <%= link_to "比較", { controller: "compares", action: "show", id: hotel.id }, class: "btn btn-danger" %>

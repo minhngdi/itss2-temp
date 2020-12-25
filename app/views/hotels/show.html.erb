@@ -29,7 +29,7 @@
             <% if @pictures[1] %>
               <%= image_tag @pictures[1].picture.url, alt: "hotel logo", style: "width:100%; height: 550px" %>
             <% else %>
-              <%= link_to image_tag("fukusou-2.jpg", alt: "hotel logo", style: "width:100%; height: 550px")%>
+              <%= link_to image_tag("fukusou.jpg", alt: "hotel logo", style: "width:100%; height: 550px")%>
             <% end %>
           </div>
         
@@ -37,7 +37,7 @@
             <%if @pictures[2] %>
               <%= image_tag @pictures[2].picture.url, alt: "hotel logo", style: "width:100%; height: 550px" %>
             <% else %>
-              <%= link_to image_tag("fukusou-2.jpg", alt: "hotel logo", style: "width:100%; height: 550px")%>
+              <%= link_to image_tag("fukusou.jpg", alt: "hotel logo", style: "width:100%; height: 550px")%>
             <% end %>
           </div>
         </div>
@@ -233,19 +233,6 @@
         	</li>
         </ul>
     </div>
-</div>
-
-
-<div class="row">
-  <div class="comment-content">
-      <div class="blog-comment">
-        <% if user_signed_in? %>
-          <hr/>
-        <% else %>
-          <h3 style="text-align: center;">評価のために<%= link_to "ログイン", new_user_session_path %>下さい</h3>
-        <% end %>
-      </div>
-  </div>
 </div>
 
 <div class="row">

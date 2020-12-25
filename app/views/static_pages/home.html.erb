@@ -53,45 +53,39 @@
 
 					<div class="col-md-12 about-left">
 						<div class="about-tre head-bt">
-							<%
-=begin%>
- <a href="#"><button class="btn-gt">イベントにうってつけの服装</button></a> 
-<%
-=end%>
-								<div class="a-1 r-bn">
-									<div class="col-md-6 abt-left">
-										<a href="/recommends?utf8=✓&wifi=1&commit=フィルター"><%= image_tag "cuoi-2.jpg",alt:"", class:"img-bn home_img", style:"max-width:100%;max-height:100%;width:auto;height:400px;display:block;margin-left:auto;margin-right:auto" %></a>
-										<div style="text-align: center;">
-										<h3><a href="/recommends?utf8=✓&wifi=1&commit=フィルター">結婚式</a></h3>
-										</div>
-									</div>
-									<div class="col-md-6 abt-left">
-										<a href="/recommends?utf8=✓&breakfast=1&commit=フィルター"><%= image_tag "party-2.jpg",alt:"", class:"img-bn", style:"max-width:100%;max-height:100%;width:auto;height:400px;display:block;margin-left:auto;margin-right:auto" %></a>
-										<div style="text-align: center;">
-										<h3><a href="/recommends?utf8=✓&breakfast=1&commit=フィルター">パーティー</a></h3>
-										</div>
-									</div>
-									<div class="clearfix"></div>
+							<div class="a-1 r-bn">
+								<div class="col-md-6 abt-left">
+									<%= link_to random_rate_path(:event => "結婚式") do %>
+										<%= image_tag "cuoi-2.jpg",alt:"", class:"img-bn", style:"height: 600px" %>
+									<% end %>
+									<h3><%= link_to "結婚式", random_rate_path(:event => "結婚式") %></h3>
 								</div>
-								<br><br>
-								<div class="a-1 r-bn">
-									<div class="col-md-6 abt-left">
-										<a href="/recommends?utf8=✓&pool=1&commit=フィルター"><%= image_tag "date.jpg",alt:"", class:"img-bn", style:"max-width:100%;max-height:100%;width:auto;height:400px;display:block;margin-left:auto;margin-right:auto" %></a>
-										<div style="text-align: center;">
-										<h3><a href="/recommends?utf8=✓&pool=1&commit=フィルター">デート</a></h3>
-										</div>
-									</div>
-									<div class="col-md-6 abt-left">
-										<a href="/recommends?utf8=✓&parking=1&commit=フィルター"><%= image_tag "dulich.jpg",alt:"", class:"img-bn", style:"max-width:100%;max-height:100%;width:auto;height:400px;display:block;margin-left:auto;margin-right:auto" %></a>
-										<div style="text-align: center;">
-										<h3><a href="/recommends?utf8=✓&parking=1&commit=フィルター">旅行</a></h3>
-										<div>
-									</div>
-									<div class="clearfix"></div>
+								<div class="col-md-6 abt-left">
+									<%= link_to random_rate_path(:event => "パーティー") do %>
+										<%= image_tag "party-2.jpg",alt:"", class:"img-bn", style:"height: 600px" %>
+									<% end %>
+									<h3><%= link_to "パーティー", random_rate_path(:event => "パーティー") %></h3>
 								</div>
-
+								<div class="clearfix"></div>
+							</div>
+							<br><br>
+							<div class="a-1 r-bn">
+								<div class="col-md-6 abt-left">
+									<%= link_to random_rate_path(:event => "デート") do %>
+										<%= image_tag "date.jpg",alt:"", class:"img-bn", style:"height: 600px" %>
+									<% end %>
+									<h3><%= link_to "デート", random_rate_path(:event => "デート") %></h3>
+								</div>
+								<div class="col-md-6 abt-left">
+									<%= link_to random_rate_path(:event => "旅行") do %>
+										<%= image_tag "dulich.jpg",alt:"", class:"img-bn", style:"height: 600px" %>
+									<% end %>
+									<h3><%= link_to "旅行", random_rate_path(:event => "旅行") %></h3>
+								</div>
+								<div class="clearfix"></div>
 							</div>
 						</div>
+					</div>
 		</div>
 	</div>
 	<!--about-end-->

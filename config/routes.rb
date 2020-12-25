@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'random_rate', to: 'random_rate#index'
   get 'informations/show'
   get '/compares', to: 'compares#index'
   get '/compares/:id', to: 'compares#show'
