@@ -10,7 +10,7 @@
 	<div class="carousel-inner">
 		<div class="item active">
 			<%= image_tag "banner.png",alt:"", style:"width:100%; height: 450px" %>
-			<div class="carousel-caption">
+			<div class="carousel-caption" style ="color:#ebfafa;text-shadow: 2px 2px #196666;font-weight:900">
 				<h3>ファッション</h3>
 				<p>適切な服を見つけるのは簡単です</p>
 			</div>
@@ -18,7 +18,7 @@
 
 		<div class="item">
 			<%= image_tag "banner-2.jpg",alt:"", style:"width:100%; height: 450px" %>
-			<div class="carousel-caption">
+			<div class="carousel-caption" style ="color:#ebfafa;text-shadow: 2px 2px #196666;font-weight:900">
 				<h3>イベント</h3>
 				<p>適切な服をすばやく見つける</p>
 			</div>
@@ -26,7 +26,7 @@
 	
 		<div class="item">
 			<%= image_tag "banner-3.png",alt:"", style:"width:100%; height: 450px" %>
-			<div class="carousel-caption">
+			<div class="carousel-caption" style ="color:#ebfafa;text-shadow: 2px 2px #196666;font-weight:900">
 				<h3>ファッション</h3>
 				<p>適切な服を見つけるのは簡単です</p>
 			</div>
@@ -54,15 +54,15 @@
 					<div class="col-md-12 about-left">
 						<div class="about-tre head-bt">
 							<div class="a-1 r-bn">
-								<div class="col-md-6 abt-left">
+								<div class="col-md-6 abt-left" style="text-align: center;">
 									<%= link_to random_rate_path(:event => "結婚式") do %>
-										<%= image_tag "cuoi-2.jpg",alt:"", class:"img-bn", style:"height: 600px" %>
+										<%= image_tag "cuoi-2.jpg",alt:"", class:"img-bn", style:"max-width:100%;max-height:100%;height:450px;width:auto;display:block;margin-left:auto;margin-right:auto" %>
 									<% end %>
 									<h3><%= link_to "結婚式", random_rate_path(:event => "結婚式") %></h3>
 								</div>
-								<div class="col-md-6 abt-left">
+								<div class="col-md-6 abt-left" style="text-align: center;">
 									<%= link_to random_rate_path(:event => "パーティー") do %>
-										<%= image_tag "party-2.jpg",alt:"", class:"img-bn", style:"height: 600px" %>
+										<%= image_tag "party-2.jpg",alt:"", class:"img-bn", style:"max-width:100%;max-height:100%;height:450px;width:auto;display:block;margin-left:auto;margin-right:auto" %>
 									<% end %>
 									<h3><%= link_to "パーティー", random_rate_path(:event => "パーティー") %></h3>
 								</div>
@@ -70,15 +70,15 @@
 							</div>
 							<br><br>
 							<div class="a-1 r-bn">
-								<div class="col-md-6 abt-left">
+								<div class="col-md-6 abt-left" style="text-align: center;">
 									<%= link_to random_rate_path(:event => "デート") do %>
-										<%= image_tag "date.jpg",alt:"", class:"img-bn", style:"height: 600px" %>
+										<%= image_tag "date.jpg",alt:"", class:"img-bn", style:"max-width:100%;max-height:100%;height:450px;width:auto;display:block;margin-left:auto;margin-right:auto" %>
 									<% end %>
 									<h3><%= link_to "デート", random_rate_path(:event => "デート") %></h3>
 								</div>
-								<div class="col-md-6 abt-left">
+								<div class="col-md-6 abt-left" style="text-align: center;">
 									<%= link_to random_rate_path(:event => "旅行") do %>
-										<%= image_tag "dulich.jpg",alt:"", class:"img-bn", style:"height: 600px" %>
+										<%= image_tag "dulich.jpg",alt:"", class:"img-bn", style:"max-width:100%;max-height:100%;height:450px;width:auto;display:block;margin-left:auto;margin-right:auto" %>
 									<% end %>
 									<h3><%= link_to "旅行", random_rate_path(:event => "旅行") %></h3>
 								</div>
