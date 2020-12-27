@@ -8,13 +8,8 @@ phone_number: Faker::PhoneNumber.cell_phone, pool: true, parking: true, gender: 
   wifi: [true, false].sample, pool: [true, false].sample, parking: [true, false].sample, breakfast:[true, false].sample, gender:[true,false].sample, skin_color: rand(1..3), hair_color: rand(1..4))
   HotelPicture.create!(hotel_id: i+1, picture: "001.jpg")
 end
-HotelPicture.create!(hotel_id: 1, picture: "001.jpg")
-HotelPicture.create!(hotel_id: 1, picture: "001.jpg")
 
-HotelPicture.create!(hotel_id: 2, picture: "001.jpg")
-HotelPicture.create!(hotel_id: 2, picture: "001.jpg")
-
-99.times do |n|
+10.times do |n|
   name  = Faker::Name.name
   email = "user#{n + 1}@hotel.com"
   password = "123456"
