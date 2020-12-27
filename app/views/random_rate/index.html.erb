@@ -4,15 +4,15 @@
       <h3><%= params[:event] %></h3>
     <% end %>
   </div>
-  <div class="row" style="margin-top:-50px">
+  <div class="row" style="margin-top:-70px">
     <div class="col-sm-4 sidebar" style="margin-left:50px">
       <div class="row">
         <div class="row well hotel" style="width: 400px; height: 650px">
-          <div class="col-md-12 abt-left">
+          <div id="leftclick" class="col-md-12 abt-left">
             <% if @hotel1.hotel_pictures && @hotel1.hotel_pictures.first %>
-              <%= image_tag @hotel1.hotel_pictures.first.picture.url, alt: @hotel1.name, class:"img-bn", style:"max-width:100%;max-height:100%;height: 450px;width:auto;margin-left: auto;margin-right: auto;display:block" %>
+              <%= image_tag @hotel1.hotel_pictures.first.picture.url, alt: @hotel1.name, class:"img-bn", style:"max-width:100%;max-height:100%;height: 400px;width:auto;margin-left: auto;margin-right: auto;display:block" %>
             <% else %>
-              <%= image_tag "fukusou.jpg", alt: @hotel1.name, class:"img-bn", style:"max-width:100%;max-height:100%;height: 450px;width:auto;margin-left: auto;margin-right: auto;display:block" %>
+              <%= image_tag "fukusou.jpg", alt: @hotel1.name, class:"img-bn", style:"max-width:100%;max-height:100%;height: 400px;width:auto;margin-left: auto;margin-right: auto;display:block" %>
             <% end %>
           </div>
           <div class="col-sm-12">
@@ -64,8 +64,8 @@
               <span style="color: #18bc9c">髪色：</span> モスグリーン
             <% end %>
           </div>
-          <div class="col-md-12 text-center">
-            <%= radio_button_tag 'rate_id', @hotel1.id %> &nbsp; <%= @hotel1.name %>
+          <div class="col-md-12 text-center radio" style="margin-top:3px;">
+            <%= radio_button_tag 'rate_id' ,@hotel1.id%> &nbsp; 
           </div>
         </div>
       </div>
@@ -79,9 +79,9 @@
         <div class="row well hotel" style="width: 450px; height: 650px">
           <div class="col-md-12 abt-left">
             <% if @hotel2.hotel_pictures && @hotel2.hotel_pictures.first %>
-              <%= image_tag @hotel2.hotel_pictures.first.picture.url, alt: @hotel2.name, class:"img-bn", style:"max-width:100%;max-height:100%;height: 450px;width:auto;margin-left: auto;margin-right: auto;display:block" %>
+              <%= image_tag @hotel2.hotel_pictures.first.picture.url, alt: @hotel2.name, class:"img-bn", style:"max-width:100%;max-height:100%;height: 400px;width:auto;margin-left: auto;margin-right: auto;display:block" %>
             <% else %>
-              <%= image_tag "fukusou.jpg", alt: @hotel2.name, class:"img-bn", style:"max-width:100%;max-height:100%;height: 450px;width:auto;margin-left: auto;margin-right: auto;display:block" %>
+              <%= image_tag "fukusou.jpg", alt: @hotel2.name, class:"img-bn", style:"max-width:100%;max-height:100%;height: 400px;width:auto;margin-left: auto;margin-right: auto;display:block" %>
             <% end %>
           </div>
           <div class="col-sm-12">
@@ -134,13 +134,13 @@
             <% end %>
           </div>
           <div class="col-md-12 text-center">
-            <%= radio_button_tag 'rate_id', @hotel2.id %> &nbsp; <%= @hotel2.name %>
+            <%= radio_button_tag 'rate_id', @hotel2.id %> &nbsp; 
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="row sidebar text-center">
+  <div class="row sidebar text-center" style="margin-top:-100px;margin-left:10px">
     <%= radio_button_tag('select_id', [@hotel1.id, @hotel2.id], checked = true, style:"display: none;") %>
     <%= radio_button_tag('event', params[:event], checked = true, style:"display: none;") %>
     <%= submit_tag "選ぶ", class: "btn btn-primary" %>

@@ -1,3 +1,36 @@
-// Place all the styles related to the RandomRate controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+input[type="radio"]{
+	height: 25px;
+	width: 25px;
+	background-color: white;
+	position: relative;
+	outline: none;
+	transform: rotate(45deg);
+	-webkit-appearance: none;
+}
+
+input[type="radio"]:before{
+	position: absolute;
+	content: "";
+	background-color: white;
+	height: 60%;
+	width: 100%;
+	top:-59%;
+	border-radius: 75px 75px 0 0;
+}
+
+input[type="radio"]:after{
+	position: absolute;
+	content: "";
+	background-color: white;
+	height: 60%;
+	width: 100%;
+	transform: rotate(-90deg);
+	border-radius: 75px 75px 0 0;
+	top:20%;
+	right:79%;
+}
+input[type="radio"]:checked,
+input:checked[type="radio"]:before,
+input:checked[type="radio"]:after{
+	background-color: #fe0f42;
+}
