@@ -7,7 +7,6 @@ input[type="radio"]{
 	transform: rotate(45deg);
 	-webkit-appearance: none;
 }
-
 input[type="radio"]:before{
 	position: absolute;
 	content: "";
@@ -17,7 +16,6 @@ input[type="radio"]:before{
 	top:-59%;
 	border-radius: 75px 75px 0 0;
 }
-
 input[type="radio"]:after{
 	position: absolute;
 	content: "";
